@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sejin Park</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --indigo: #4F46E5;
+    --indigo-light: #EEF2FF;
+    --indigo-mid: #818CF8;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-300: #D1D5DB;
+    --gray-500: #6B7280;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--gray-900);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-100);
+    z-index: 100;
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-weight: 700; font-size: 1rem; color: var(--gray-900);
+    text-decoration: none; letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: var(--indigo); }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.875rem; font-weight: 500;
+    color: var(--gray-500); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--indigo); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--indigo);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-size: 1.75rem; font-weight: 700;
+    color: var(--gray-900); margin-bottom: 2.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  /* HERO */
+  #about {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 56px;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; color: var(--indigo);
+    letter-spacing: 0.1em; margin-bottom: 1rem;
+  }
+  .hero-name {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 700; letter-spacing: -1.5px;
+    color: var(--gray-900); line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-size: 1.15rem; font-weight: 400;
+    color: var(--indigo-mid); margin-bottom: 1.5rem;
+  }
+  .hero-bio {
+    font-size: 1rem; color: var(--gray-500);
+    max-width: 540px; line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .hero-edu {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .edu-badge {
+    background: var(--indigo-light); color: var(--indigo);
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.3rem 0.75rem; border-radius: 99px;
+  }
+  .hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.5rem 1.1rem; border-radius: 8px;
+    font-size: 0.875rem; font-weight: 500; text-decoration: none;
+    transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--indigo); color: #fff; }
+  .btn-primary:hover { background: #4338CA; }
+  .btn-outline {
+    background: transparent; color: var(--gray-700);
+    border: 1.5px solid var(--gray-300);
+  }
+  .btn-outline:hover { border-color: var(--indigo); color: var(--indigo); }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%; height: 1px;
+    background: var(--gray-100); max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ALT BG */
+  .alt-bg { background: var(--gray-50); }
+  .alt-bg section { background: transparent; }
+
+  /* PUBLICATIONS */
+  .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+  .pub-card {
+    background: var(--white); border: 1px solid var(--gray-100);
+    border-radius: 12px; padding: 1.25rem 1.5rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .pub-card:hover { box-shadow: 0 4px 20px rgba(79,70,229,0.08); border-color: var(--indigo-mid); }
+  .pub-venue {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--indigo);
+    letter-spacing: 0.08em; margin-bottom: 0.4rem;
+  }
+  .pub-title {
+    font-size: 0.975rem; font-weight: 600;
+    color: var(--gray-900); margin-bottom: 0.4rem; line-height: 1.4;
+  }
+  .pub-authors { font-size: 0.83rem; color: var(--gray-500); margin-bottom: 0.75rem; }
+  .pub-authors strong { color: var(--gray-700); }
+  .tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; padding: 0.2rem 0.6rem;
+    border-radius: 6px; font-weight: 500;
+    background: var(--gray-100); color: var(--gray-700);
+    text-decoration: none; transition: background 0.15s;
+  }
+  .tag:hover { background: var(--indigo-light); color: var(--indigo); }
+  .tag.pdf { background: var(--indigo-light); color: var(--indigo); }
+
+  /* PROJECTS */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .project-card {
+    background: var(--white); border: 1px solid var(--gray-100);
+    border-radius: 12px; padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .project-card:hover { box-shadow: 0 4px 20px rgba(79,70,229,0.08); border-color: var(--indigo-mid); }
+  .project-icon { font-size: 1.5rem; }
+  .project-title { font-size: 0.975rem; font-weight: 600; color: var(--gray-900); }
+  .project-desc { font-size: 0.85rem; color: var(--gray-500); line-height: 1.65; flex: 1; }
+  .tech-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .tech-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.67rem; padding: 0.18rem 0.5rem;
+    border-radius: 5px; background: var(--gray-100); color: var(--gray-700);
+  }
+  .project-link {
+    font-size: 0.8rem; font-weight: 500; color: var(--indigo);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem;
+  }
+  .project-link:hover { text-decoration: underline; }
+
+  /* HOBBY */
+  .hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .hobby-card {
+    background: var(--white); border: 1px solid var(--gray-100);
+    border-radius: 12px; padding: 1.25rem 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.2s;
+  }
+  .hobby-card:hover { box-shadow: 0 4px 16px rgba(79,70,229,0.07); }
+  .hobby-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+  .hobby-name { font-size: 0.9rem; font-weight: 600; color: var(--gray-900); }
+  .hobby-desc { font-size: 0.8rem; color: var(--gray-500); margin-top: 0.25rem; line-height: 1.5; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--gray-100);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  .footer-name { font-weight: 600; font-size: 0.95rem; color: var(--gray-900); margin-bottom: 0.3rem; }
+  .footer-sub { font-size: 0.8rem; color: var(--gray-500); }
+  .footer-links { display: flex; justify-content: center; gap: 1.25rem; margin-top: 1rem; }
+  .footer-links a {
+    font-size: 0.8rem; color: var(--gray-500); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--indigo); }
+
+  /* FADE-IN */
+  .fade { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fade.visible { opacity: 1; transform: none; }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.25rem; }
+    .project-grid { grid-template-columns: 1fr; }
+    .hobby-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#about">Sejin<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Home</a></li>
+    <li><a href="#about-me">About</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#hobby">Hobby</a></li>
+  </ul>
+</nav>
+
+<!-- HERO / ABOUT -->
+<section id="about">
+  <p class="hero-eyebrow">👋 Hello, I'm</p>
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.5rem;">
+    <h1 class="hero-name" style="margin-bottom:0;">Sejin Park</h1>
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--indigo-light);border:2px dashed var(--indigo-mid);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;">
+      <span style="font-size:1.4rem;">🧑‍💻</span>
+      <span style="font-size:0.58rem;font-family:'JetBrains Mono',monospace;color:var(--indigo);">photo</span>
+    </div>
+  </div>
+  <p class="hero-title">AI / Machine Learning Researcher &nbsp;·&nbsp; Affctiv Lab</p>
+  <p class="hero-bio">
+    I am a researcher at <strong>Affctiv Lab</strong>, working at the intersection of cognitive neuroscience and deep learning.
+    My research focuses on decoding neural signals — particularly EEG — into human-interpretable representations using modern language models.
+  </p>
+  <div class="hero-links">
+    <a class="btn btn-primary" href="mailto:your@email.com">✉ Contact</a>
+    <a class="btn btn-outline" href="https://github.com/" target="_blank">GitHub</a>
+    <a class="btn btn-outline" href="https://scholar.google.com/" target="_blank">Google Scholar</a>
+    <a class="btn btn-outline" href="#">CV / Resume</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about-me" class="fade">
+  <p class="section-label">About</p>
+  <h2>About Me</h2>
+  <p style="color:var(--gray-500);font-size:0.95rem;line-height:1.8;max-width:620px;margin-bottom:2.5rem;">
+    I am a researcher at <strong style="color:var(--gray-700)">Affctiv Lab</strong>, working at the intersection of cognitive neuroscience and deep learning.
+    My research focuses on decoding neural signals — particularly EEG — into human-interpretable representations using modern language models and optimal transport theory.
+  </p>
+
+  <h3 style="font-size:1rem;font-weight:600;color:var(--gray-900);margin-bottom:1.25rem;letter-spacing:-0.2px;">Education</h3>
+  <div style="display:flex;flex-direction:column;gap:0;position:relative;">
+    <!-- timeline line -->
+    <div style="position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--gray-100);"></div>
+
+    <div style="display:flex;gap:1.25rem;align-items:flex-start;padding-bottom:1.75rem;position:relative;">
+      <div style="width:16px;height:16px;border-radius:50%;background:var(--indigo);flex-shrink:0;margin-top:3px;position:relative;z-index:1;"></div>
+      <div>
+        <p style="font-size:0.7rem;font-family:'JetBrains Mono',monospace;color:var(--indigo);letter-spacing:0.08em;margin-bottom:0.2rem;">M.S. · Inha University</p>
+        <p style="font-size:0.95rem;font-weight:600;color:var(--gray-900);">Master of Science</p>
+        <p style="font-size:0.83rem;color:var(--gray-500);margin-top:0.15rem;">Dept. of Artificial Intelligence &nbsp;·&nbsp; Incheon, Korea</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:1.25rem;align-items:flex-start;position:relative;">
+      <div style="width:16px;height:16px;border-radius:50%;background:var(--gray-300);flex-shrink:0;margin-top:3px;position:relative;z-index:1;"></div>
+      <div>
+        <p style="font-size:0.7rem;font-family:'JetBrains Mono',monospace;color:var(--gray-500);letter-spacing:0.08em;margin-bottom:0.2rem;">B.S. · Sunmoon University</p>
+        <p style="font-size:0.95rem;font-weight:600;color:var(--gray-900);">Bachelor of Science</p>
+        <p style="font-size:0.83rem;color:var(--gray-500);margin-top:0.15rem;">Asan, Korea</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PUBLICATIONS -->
+<div class="alt-bg">
+<section id="publications" class="fade">
+  <p class="section-label">Research</p>
+  <h2>Publications</h2>
+  <div class="pub-list">
+
+    <div class="pub-card">
+      <p class="pub-venue">NeurIPS 2025 · Under Review</p>
+      <p class="pub-title">EEG-to-Text Decoding via Wasserstein Distributional Alignment</p>
+      <p class="pub-authors"><strong>Sejin Park</strong>, Author B, Author C</p>
+      <div class="tag-row">
+        <span class="tag pdf">PDF</span>
+        <span class="tag">arXiv</span>
+        <span class="tag">EEG</span>
+        <span class="tag">BCI</span>
+        <span class="tag">Optimal Transport</span>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <p class="pub-venue">Conference / Journal · Year</p>
+      <p class="pub-title">Your Next Paper Title Goes Here</p>
+      <p class="pub-authors"><strong>Sejin Park</strong>, Co-author</p>
+      <div class="tag-row">
+        <span class="tag">PDF</span>
+        <span class="tag">Code</span>
+        <span class="tag">Topic Tag</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects" class="fade">
+  <p class="section-label">Work</p>
+  <h2>Projects</h2>
+  <div class="project-grid">
+
+    <div class="project-card">
+      <div class="project-icon">🧠</div>
+      <div class="project-title">EEG-Text Bridge</div>
+      <div class="project-desc">End-to-end pipeline for aligning raw EEG signals with text embeddings using Wasserstein loss and contrastive learning.</div>
+      <div class="tech-tags">
+        <span class="tech-tag">PyTorch</span>
+        <span class="tech-tag">Transformers</span>
+        <span class="tech-tag">ZuCo</span>
+      </div>
+      <a class="project-link" href="#">→ GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">📸</div>
+      <div class="project-title">Sci-Snap</div>
+      <div class="project-desc">AI mobile app that provides scientific explanations from photos, built with Flutter, GPT-4o, and AWS.</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Flutter</span>
+        <span class="tech-tag">GPT-4o</span>
+        <span class="tech-tag">AWS</span>
+        <span class="tech-tag">PostgreSQL</span>
+      </div>
+      <a class="project-link" href="#">→ GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">⚙️</div>
+      <div class="project-title">MonotonicSlotExtractor</div>
+      <div class="project-desc">Perceiver-style slot attention module for structured EEG representation learning with monotonic cross-attention pooling.</div>
+      <div class="tech-tags">
+        <span class="tech-tag">PyTorch</span>
+        <span class="tech-tag">Slot Attention</span>
+      </div>
+      <a class="project-link" href="#">→ GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOBBY -->
+<div class="alt-bg">
+<section id="hobby" class="fade">
+  <p class="section-label">Personal</p>
+  <h2>Hobby</h2>
+  <div class="hobby-grid">
+    <div class="hobby-card">
+      <div class="hobby-emoji">📚</div>
+      <div class="hobby-name">Reading</div>
+      <div class="hobby-desc">Science, philosophy, and the occasional sci-fi novel</div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-emoji">🎵</div>
+      <div class="hobby-name">Music</div>
+      <div class="hobby-desc">Listening and exploring new genres</div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-emoji">🏃</div>
+      <div class="hobby-name">Running</div>
+      <div class="hobby-desc">Clearing the mind, one km at a time</div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-emoji">✍️</div>
+      <div class="hobby-name">Writing</div>
+      <div class="hobby-desc">Research notes and occasional essays</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Sejin Park</div>
+  <div class="footer-sub">AI Researcher · Affctiv Lab · Inha University</div>
+  <div class="footer-links">
+    <a href="mailto:your@email.com">Email</a>
+    <a href="#">GitHub</a>
+    <a href="#">Google Scholar</a>
+    <a href="#">CV</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
