@@ -193,15 +193,12 @@
     gap: 1rem;
   }
   .hobby-card {
-    background: var(--white); border: 1px solid var(--gray-100);
-    border-radius: 12px; padding: 1.25rem 1.5rem;
-    text-align: center;
-    transition: box-shadow 0.2s;
+    border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--gray-100);
+    transition: box-shadow 0.2s, transform 0.2s;
   }
-  .hobby-card:hover { box-shadow: 0 4px 16px rgba(79,70,229,0.07); }
-  .hobby-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
-  .hobby-name { font-size: 0.9rem; font-weight: 600; color: var(--gray-900); }
-  .hobby-desc { font-size: 0.8rem; color: var(--gray-500); margin-top: 0.25rem; line-height: 1.5; }
+  .hobby-card:hover { box-shadow: 0 6px 24px rgba(79,70,229,0.12); transform: translateY(-2px); }
+  .hobby-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
 
   /* FOOTER */
   footer {
@@ -251,10 +248,7 @@
   <p class="hero-eyebrow">👋 Hello, I'm</p>
   <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.5rem;">
     <h1 class="hero-name" style="margin-bottom:0;">Sejin Park</h1>
-    <div style="width:64px;height:64px;border-radius:50%;background:var(--indigo-light);border:2px dashed var(--indigo-mid);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;">
-      <span style="font-size:1.4rem;">🧑‍💻</span>
-      <span style="font-size:0.58rem;font-family:'JetBrains Mono',monospace;color:var(--indigo);">photo</span>
-    </div>
+    <img src="img/profile_IMG.JPG" alt="Sejin Park" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--indigo-mid);flex-shrink:0;">
   </div>
   <p class="hero-title">AI / Machine Learning Researcher &nbsp;·&nbsp; Affctiv Lab</p>
   <p class="hero-bio">
@@ -262,9 +256,9 @@
     My research focuses on decoding neural signals — particularly EEG — into human-interpretable representations using modern language models.
   </p>
   <div class="hero-links">
-    <a class="btn btn-primary" href="mailto:your@email.com">✉ Contact</a>
-    <a class="btn btn-outline" href="https://github.com/" target="_blank">GitHub</a>
-    <a class="btn btn-outline" href="https://scholar.google.com/" target="_blank">Google Scholar</a>
+    <a class="btn btn-primary" href="mailto:sejinp98@gmail.com">✉ Contact</a>
+    <a class="btn btn-outline" href="https://github.com/DeveloperSeJin" target="_blank">GitHub</a>
+    <a class="btn btn-outline" href="https://scholar.google.com/citations?user=hkenerYAAAAJ" target="_blank">Google Scholar</a>
 </section>
 
 <div class="divider"></div>
@@ -288,7 +282,7 @@
       <div>
         <p style="font-size:0.7rem;font-family:'JetBrains Mono',monospace;color:var(--indigo);letter-spacing:0.08em;margin-bottom:0.2rem;">M.S. · Inha University</p>
         <p style="font-size:0.95rem;font-weight:600;color:var(--gray-900);">Master of Science</p>
-        <p style="font-size:0.83rem;color:var(--gray-500);margin-top:0.15rem;">Dept. of Artificial Intelligence &nbsp;·&nbsp; Incheon, Korea</p>
+        <p style="font-size:0.83rem;color:var(--gray-500);margin-top:0.15rem;">Electrical and Computer Engineering &nbsp;·&nbsp; Incheon, Korea</p>
       </div>
     </div>
 
@@ -297,7 +291,7 @@
       <div>
         <p style="font-size:0.7rem;font-family:'JetBrains Mono',monospace;color:var(--gray-500);letter-spacing:0.08em;margin-bottom:0.2rem;">B.S. · Sunmoon University</p>
         <p style="font-size:0.95rem;font-weight:600;color:var(--gray-900);">Bachelor of Science</p>
-        <p style="font-size:0.83rem;color:var(--gray-500);margin-top:0.15rem;">Asan, Korea</p>
+        <p style="font-size:0.83rem;color:var(--gray-500);margin-top:0.15rem;">Department of Computer Science and Engineering &nbsp;·&nbsp; Asan, Korea</p>
       </div>
     </div>
   </div>
@@ -312,7 +306,7 @@
   <h2>Publications</h2>
   <div class="pub-list">
 
-    <div class="pub-card">
+    <!-- <div class="pub-card">
       <p class="pub-venue">NeurIPS 2025 · Under Review</p>
       <p class="pub-title">EEG-to-Text Decoding via Wasserstein Distributional Alignment</p>
       <p class="pub-authors"><strong>Sejin Park</strong>, Author B, Author C</p>
@@ -334,7 +328,7 @@
         <span class="tag">Code</span>
         <span class="tag">Topic Tag</span>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </section>
@@ -350,38 +344,28 @@
 
     <div class="project-card">
       <div class="project-icon">🧠</div>
-      <div class="project-title">EEG-Text Bridge</div>
-      <div class="project-desc">End-to-end pipeline for aligning raw EEG signals with text embeddings using Wasserstein loss and contrastive learning.</div>
+      <div class="project-title">DELTA</div>
+      <div class="project-desc">Diffusion-based EEG-to-language translation architecture that combines a latent-diffusion framework with an autoencoder for joint EEG-text representation learning and multi-stage decoding.</div>
       <div class="tech-tags">
         <span class="tech-tag">PyTorch</span>
-        <span class="tech-tag">Transformers</span>
-        <span class="tech-tag">ZuCo</span>
+        <span class="tech-tag">Diffusion Models</span>
+        <span class="tech-tag">BART</span>
+        <span class="tech-tag">EEG</span>
       </div>
-      <a class="project-link" href="#">→ GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-icon">📸</div>
-      <div class="project-title">Sci-Snap</div>
-      <div class="project-desc">AI mobile app that provides scientific explanations from photos, built with Flutter, GPT-4o, and AWS.</div>
-      <div class="tech-tags">
-        <span class="tech-tag">Flutter</span>
-        <span class="tech-tag">GPT-4o</span>
-        <span class="tech-tag">AWS</span>
-        <span class="tech-tag">PostgreSQL</span>
-      </div>
-      <a class="project-link" href="#">→ GitHub</a>
+      <a class="project-link" href="https://github.com/DeveloperSeJin/DELTA" target="_blank">→ GitHub</a>
     </div>
 
     <div class="project-card">
       <div class="project-icon">⚙️</div>
-      <div class="project-title">MonotonicSlotExtractor</div>
-      <div class="project-desc">Perceiver-style slot attention module for structured EEG representation learning with monotonic cross-attention pooling.</div>
+      <div class="project-title">Wasserstein EEG-To-Text</div>
+      <div class="project-desc">EEG-to-text decoding via Wasserstein optimal transport and slot attention, using a Conformer backbone with multi-modal fusion and contrastive learning for brain-language alignment.</div>
       <div class="tech-tags">
         <span class="tech-tag">PyTorch</span>
+        <span class="tech-tag">Optimal Transport</span>
         <span class="tech-tag">Slot Attention</span>
+        <span class="tech-tag">Conformer</span>
       </div>
-      <a class="project-link" href="#">→ GitHub</a>
+      <a class="project-link" href="https://github.com/DeveloperSeJin/Wasserstein_EEG" target="_blank">→ GitHub</a>
     </div>
 
   </div>
@@ -393,28 +377,12 @@
 <div class="alt-bg">
 <section id="hobby" class="fade">
   <p class="section-label">Personal</p>
-  <h2>Hobby</h2>
+  <h2>Hobby-Drawing</h2>
   <div class="hobby-grid">
-    <div class="hobby-card">
-      <div class="hobby-emoji">📚</div>
-      <div class="hobby-name">Reading</div>
-      <div class="hobby-desc">Science, philosophy, and the occasional sci-fi novel</div>
-    </div>
-    <div class="hobby-card">
-      <div class="hobby-emoji">🎵</div>
-      <div class="hobby-name">Music</div>
-      <div class="hobby-desc">Listening and exploring new genres</div>
-    </div>
-    <div class="hobby-card">
-      <div class="hobby-emoji">🏃</div>
-      <div class="hobby-name">Running</div>
-      <div class="hobby-desc">Clearing the mind, one km at a time</div>
-    </div>
-    <div class="hobby-card">
-      <div class="hobby-emoji">✍️</div>
-      <div class="hobby-name">Writing</div>
-      <div class="hobby-desc">Research notes and occasional essays</div>
-    </div>
+    <div class="hobby-card"><img src="img/paint1.JPG" alt="Drawing 1"></div>
+    <div class="hobby-card"><img src="img/paint2.JPG" alt="Drawing 2"></div>
+    <div class="hobby-card"><img src="img/paint3.JPG" alt="Drawing 3"></div>
+    <div class="hobby-card"><img src="img/paint4.JPG" alt="Drawing 4"></div>
   </div>
 </section>
 </div>
