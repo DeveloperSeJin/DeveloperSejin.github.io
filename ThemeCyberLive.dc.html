@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{margin:0}
+a{color:inherit}
+a:hover{color:inherit}
+button{font:inherit;color:inherit}
+img{display:block;max-width:100%}
+</style>
+</helmet>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;overflow:hidden;min-height:100vh;background:#07090A;color:#D8E6DA;font-family:'IBM Plex Mono', ui-monospace, monospace;font-size:14px;line-height:1.6;">
+<div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(184,245,60,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(184,245,60,0.045) 1px, transparent 1px);background-size:40px 40px;"></div>
+<div style="position:absolute;inset:0;pointer-events:none;z-index:3;background:repeating-linear-gradient(180deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 3px);"></div>
+<header style="position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;padding:16px clamp(16px, 4vw, 40px);border-bottom:1px solid #1C2620;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">
+<a href="#/" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><span style="width:9px;height:9px;background:#B8F53C;box-shadow:0 0 10px #B8F53C;"></span><span style="font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:16px;letter-spacing:0.14em;">Sejin_Park</span></a>
+<nav style="display:flex;flex-wrap:wrap;gap:6px 20px;">
+<a href="#b2-work" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;"><span style="color:#B8F53C;">01</span> Modules</a>
+<a href="#b2-papers" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;"><span style="color:#B8F53C;">02</span> Papers</a>
+<a href="#b2-about" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;"><span style="color:#B8F53C;">03</span> Operator</a>
+<a href="#/drawings" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;"><span style="color:#B8F53C;">04</span> Archive ↗</a>
+</nav>
+<sc-if value="{{ hasCV }}" hint-placeholder-val="{{ false }}"><a href="cv.pdf" style="color:#07090A;background:#B8F53C;padding:7px 14px;text-decoration:none;font-weight:600;clip-path:polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);" style-hover="background:#D8FF7A;">Download CV</a></sc-if>
+</header>
+<section style="position:relative;display:flex;flex-wrap:wrap;gap:40px;align-items:stretch;padding:clamp(28px, 6vw, 48px) clamp(16px, 4vw, 40px) 0;">
+<div style="flex:5 1 340px;min-width:0;display:flex;flex-direction:column;">
+<p style="font-size:12px;letter-spacing:0.22em;color:#B8F53C;text-transform:uppercase;">&gt; AI / ML Researcher @ Affctiv_</p>
+<h1 style="margin-top:14px;font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:clamp(40px, 11vw, 60px);line-height:0.95;text-transform:uppercase;letter-spacing:0.01em;text-shadow:2px 0 0 rgba(255,61,168,0.75), -2px 0 0 rgba(0,229,255,0.55);">Sejin Park</h1>
+<p style="margin-top:22px;font-size:15px;line-height:1.7;color:#B5C6B9;text-wrap:pretty;">I design agents that perceive speech, text, and vision, and build sLLM-based social robots for children on the autism spectrum.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">
+<a href="mailto:sejinp98@gmail.com" style="border:1px solid #2C3A31;padding:8px 14px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ Email ]</a>
+<a href="https://github.com/DeveloperSeJin" target="_blank" style="border:1px solid #2C3A31;padding:8px 14px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ GitHub ]</a>
+<a href="https://scholar.google.com/citations?user=hkenerYAAAAJ" target="_blank" style="border:1px solid #2C3A31;padding:8px 14px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ Scholar ]</a>
+</div>
+<div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:6px 16px;margin-top:auto;padding-top:16px;border-top:1px solid #1C2620;font-size:12px;">
+<span style="color:#7E9184;">ROLE</span><span>Researcher, Affctiv</span>
+<span style="color:#7E9184;">LOC</span><span>Incheon, KR</span>
+<span style="color:#7E9184;">FOCUS</span><span>Human–AI interaction · Multimodal agents · Social robotics · sLLM</span>
+</div>
+</div>
+<div style="flex:7 1 460px;min-width:0;position:relative;display:flex;flex-direction:column;border:1px solid #1C2620;background:rgba(12,16,14,0.92);">
+<span style="position:absolute;top:-1px;left:-1px;width:16px;height:16px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span>
+<span style="position:absolute;bottom:-1px;right:-1px;width:16px;height:16px;border-bottom:2px solid #B8F53C;border-right:2px solid #B8F53C;"></span>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 16px;padding:10px 16px;border-bottom:1px solid #1C2620;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;">
+<span><span style="color:#FF3DA8;">●</span> Live // sejin.agent — ask my agent</span>
+<span ref="{{ metB2 }}" style="display:flex;gap:14px;">VIS ▮▮▮▯ AUD ▮▯▯▯ TXT ▮▯▯▯</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px 24px;align-items:center;flex:1;padding:clamp(16px, 4vw, 22px) clamp(14px, 4vw, 22px) 18px;">
+<div style="position:relative;flex:none;width:200px;height:218px;">
+<canvas ref="{{ ringB2 }}" style="position:absolute;left:0;top:0;width:200px;height:200px;display:block;"></canvas>
+<div style="position:absolute;left:48px;top:48px;width:104px;height:104px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 38%, rgba(184,245,60,0.45), rgba(184,245,60,0.08) 55%, #0C100E 75%);">
+<img src="img/agent_dr.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(1.5px 0 0 rgba(255,61,168,0.7)) drop-shadow(-1.5px 0 0 rgba(0,229,255,0.5));">
+<span style="position:absolute;inset:0;background:repeating-linear-gradient(180deg, rgba(7,9,10,0.2) 0 2px, transparent 2px 4px);"></span>
+</div>
+<p ref="{{ stB2 }}" style="position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#7E9184;">listening</p>
+</div>
+<div style="flex:1 1 260px;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;min-height:clamp(150px, 40vw, 218px);">
+<sc-if value="{{ hasPrevB2 }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:2px;font-size:12px;color:#5F7166;">
+<p style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">&gt; visitor: {{ prevQB2 }}</p>
+<p style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">&lt; agent: {{ prevAB2 }}</p>
+</div>
+</sc-if>
+<p style="font-size:14px;"><span style="color:#FF3DA8;">&gt; visitor:</span> {{ qB2 }}</p>
+<p style="min-height:104px;font-size:16px;line-height:1.6;"><span style="color:#B8F53C;">&lt; agent:</span> <span ref="{{ ansB2 }}" style="color:#F1FFF3;"></span></p>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid #1C2620;">
+<span style="margin-right:4px;font-size:12px;color:#7E9184;">&gt; ask:</span>
+<sc-for list="{{ chipsB2 }}" as="chip" hint-placeholder-count="4">
+<button onClick="{{ chip.pick }}" style="background:{{ chip.bg }};color:{{ chip.fg }};border:1px solid {{ chip.bd }};padding:4px 10px;cursor:pointer;font-family:'IBM Plex Mono', monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;" style-hover="border-color:#B8F53C;">{{ chip.label }}</button>
+</sc-for>
+<span style="margin-left:auto;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7E9184;">{{ autoLabelB2 }}</span>
+</div>
+</div>
+</section>
+<section id="b2-work" style="position:relative;padding:clamp(48px, 9vw, 72px) clamp(16px, 4vw, 40px) 0;">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;border-bottom:1px solid #1C2620;padding-bottom:12px;">
+<span style="color:#B8F53C;font-size:13px;">[01]</span>
+<h2 style="font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:clamp(26px, 7vw, 34px);line-height:1;letter-spacing:0.03em;text-transform:uppercase;">Modules</h2>
+<span style="margin-left:auto;font-size:12px;color:#7E9184;letter-spacing:0.12em;text-transform:uppercase;">Projects</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(300px, 100%), 1fr));gap:20px;margin-top:24px;">
+<article style="position:relative;background:#0C100E;border:1px solid #1C2620;transition:border-color .2s, transform .2s;" style-hover="border-color:#B8F53C;transform:translateY(-3px);">
+<div style="padding:18px 20px 22px;">
+<div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;"><span>Mod_01</span><span style="color:#B8F53C;">Active</span></div>
+<h3 style="margin-top:8px;font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:24px;line-height:1.05;text-transform:uppercase;">Social Robot // ASD</h3>
+<p style="margin-top:10px;font-size:13px;line-height:1.65;color:#A9BAAE;">An sLLM-based robotic agent designed to interact with children on the autism spectrum. Guides kids through interactive tasks and prompts, supporting engagement and social interaction through natural, responsive behavior.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">sLLM</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">Robotics</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">HRI</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">ASD</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">Agent</span>
+</div>
+</div>
+<span style="position:absolute;top:-1px;right:-1px;width:14px;height:14px;border-top:2px solid #B8F53C;border-right:2px solid #B8F53C;"></span>
+</article>
+<article style="position:relative;background:#0C100E;border:1px solid #1C2620;transition:border-color .2s, transform .2s;" style-hover="border-color:#B8F53C;transform:translateY(-3px);">
+<div style="padding:18px 20px 22px;">
+<div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;"><span>Mod_02</span><span>Archived</span></div>
+<h3 style="margin-top:8px;font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:24px;line-height:1.05;text-transform:uppercase;">EEG → Text</h3>
+<p style="margin-top:10px;font-size:13px;line-height:1.65;color:#A9BAAE;">Research on decoding natural language directly from EEG brain signals. Explores how neural activity recorded during reading or imagined speech can be translated into text, bridging the gap between brain signals and language.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">PyTorch</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">Diffusion Models</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">BART</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">Optimal Transport</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">EEG</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">NLP</span>
+</div>
+</div>
+<span style="position:absolute;top:-1px;right:-1px;width:14px;height:14px;border-top:2px solid #B8F53C;border-right:2px solid #B8F53C;"></span>
+</article>
+<article style="position:relative;background:#0C100E;border:1px solid #1C2620;transition:border-color .2s, transform .2s;" style-hover="border-color:#B8F53C;transform:translateY(-3px);">
+<div style="padding:18px 20px 22px;">
+<div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;"><span>Mod_03</span><span style="color:#FF3DA8;">Private</span></div>
+<h3 style="margin-top:8px;font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:24px;line-height:1.05;text-transform:uppercase;">Research PM</h3>
+<p style="margin-top:10px;font-size:13px;line-height:1.65;color:#A9BAAE;">A personal, single-user research project manager that syncs with an Obsidian vault, tracks experiments and lab meetings, and shows Google Calendar events. Private tool, not a public service.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">TypeScript</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">React</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">Local LLM</span>
+<span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">Google Calendar API</span>
+</div>
+<a href="privacy.html" style="display:inline-block;margin-top:14px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#B8F53C;text-decoration:none;" style-hover="text-decoration:underline;">&gt; Privacy policy</a>
+</div>
+<span style="position:absolute;top:-1px;right:-1px;width:14px;height:14px;border-top:2px solid #FF3DA8;border-right:2px solid #FF3DA8;"></span>
+</article>
+</div>
+</section>
+<section id="b2-papers" style="position:relative;padding:clamp(56px, 10vw, 80px) clamp(16px, 4vw, 40px) 0;">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;border-bottom:1px solid #1C2620;padding-bottom:12px;">
+<span style="color:#B8F53C;font-size:13px;">[02]</span>
+<h2 style="font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:clamp(26px, 7vw, 34px);line-height:1;letter-spacing:0.03em;text-transform:uppercase;">Papers</h2>
+<span style="margin-left:auto;font-size:12px;color:#7E9184;letter-spacing:0.12em;text-transform:uppercase;">Publications</span>
+</div>
+<article style="position:relative;display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:24px;border:1px solid #1C2620;background:#0C100E;padding:clamp(16px, 4vw, 24px);">
+<div style="font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:36px;line-height:1;color:#B8F53C;text-shadow:0 0 18px rgba(184,245,60,0.35);flex:0 0 120px;">2026</div>
+<div style="flex:1 1 300px;min-width:0;">
+<p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;">EMNLP 2026 · Findings</p>
+<h3 style="margin-top:6px;font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:24px;line-height:1.2;text-wrap:pretty;">Latent-Level Uncertainty Resolution for Stable EEG-to-Text Decoding under Cross-Subject Variability</h3>
+<p style="margin-top:8px;font-size:13px;color:#A9BAAE;"><span style="color:#B8F53C;">Park, S. J.</span>, Lee, J. D., So, Y. H., &amp; Kim, B. H.</p>
+<div style="display:flex;gap:8px;margin-top:16px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">
+<a href="#" style="border:1px solid #2C3A31;padding:5px 12px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ PDF ]</a>
+<a href="#" style="border:1px solid #2C3A31;padding:5px 12px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ Code ]</a>
+<button onClick="{{ toggleBibB2 }}" style="background:transparent;border:1px solid #2C3A31;padding:5px 12px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ BibTeX ]</button>
+</div>
+<sc-if value="{{ bibB2 }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;margin-top:14px;border:1px solid #2C3A31;background:#050706;">
+<pre style="padding:14px 96px 14px 16px;font-family:'IBM Plex Mono', ui-monospace, monospace;font-size:12px;line-height:1.6;color:#B8F53C;white-space:pre-wrap;">{{ bibtex }}</pre>
+<button onClick="{{ copyBibB2 }}" style="position:absolute;top:8px;right:8px;background:#B8F53C;color:#07090A;border:none;padding:3px 10px;font-size:11px;font-weight:600;cursor:pointer;text-transform:uppercase;">{{ copyLabelB2 }}</button>
+</div>
+</sc-if>
+</div>
+</article>
+</section>
+<section id="b2-about" style="position:relative;padding:clamp(56px, 10vw, 80px) clamp(16px, 4vw, 40px) 0;">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;border-bottom:1px solid #1C2620;padding-bottom:12px;">
+<span style="color:#B8F53C;font-size:13px;">[03]</span>
+<h2 style="font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:clamp(26px, 7vw, 34px);line-height:1;letter-spacing:0.03em;text-transform:uppercase;">Operator</h2>
+<span style="margin-left:auto;font-size:12px;color:#7E9184;letter-spacing:0.12em;text-transform:uppercase;">About</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:32px;margin-top:28px;align-items:flex-start;">
+<div style="flex:0 1 260px;position:relative;border:1px solid #1C2620;background:#0C100E;padding:12px;">
+<span style="position:absolute;top:-1px;left:-1px;width:14px;height:14px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span>
+<span style="position:absolute;bottom:-1px;right:-1px;width:14px;height:14px;border-bottom:2px solid #B8F53C;border-right:2px solid #B8F53C;"></span>
+<div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:0.12em;color:#7E9184;text-transform:uppercase;"><span>Operator</span><span style="color:#B8F53C;">● Online</span></div>
+<div style="position:relative;margin-top:10px;aspect-ratio:1 / 1;overflow:hidden;background:#B8F53C;">
+<img src="img/profile_IMG.JPG" alt="Sejin Park" style="width:100%;height:100%;object-fit:cover;object-position:62% 50%;filter:grayscale(1) contrast(1.35);mix-blend-mode:multiply;">
+<div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg, rgba(7,9,10,0.32) 0 2px, transparent 2px 4px);"></div>
+</div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin-top:10px;font-size:12px;">
+<span style="color:#7E9184;">NAME</span><span>Sejin Park</span>
+<span style="color:#7E9184;">ROLE</span><span>Researcher, Affctiv</span>
+<span style="color:#7E9184;">LOC</span><span>Incheon, KR</span>
+</div>
+</div>
+<p style="flex:1 1 320px;min-width:0;font-size:16px;line-height:1.75;text-wrap:pretty;">I am a researcher at Affctiv, working at the intersection of cognitive neuroscience and deep learning. My work now centers on <span style="color:#B8F53C;">human–AI interaction</span>: I design agents that perceive speech, text, and vision, and build sLLM-based social robots that engage children on the autism spectrum through interactive, real-world tasks. Earlier, I worked on EEG-to-text decoding — translating raw brain signals into natural language.</p>
+<div style="flex:0 1 300px;border:1px solid #1C2620;background:#0C100E;padding:18px 20px;font-size:13px;">
+<p style="color:#7E9184;letter-spacing:0.14em;text-transform:uppercase;font-size:11px;">Service log</p>
+<div style="display:flex;flex-direction:column;gap:16px;margin-top:14px;">
+<div><p style="color:#FF3DA8;">&gt; Affctiv</p><p>Researcher</p><p style="color:#7E9184;">Incheon, Korea</p></div>
+<div><p style="color:#B8F53C;">&gt; Inha University</p><p>M.S., Electrical and Computer Engineering</p><p style="color:#7E9184;">Incheon, Korea</p></div>
+<div><p style="color:#B8F53C;">&gt; Sunmoon University</p><p>B.S. in Engineering, Computer Science and Engineering</p><p style="color:#7E9184;">Asan, Korea</p></div>
+</div>
+</div>
+</div>
+<a href="#/drawings" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:40px;border:1px solid #1C2620;background:#0C100E;padding:14px;text-decoration:none;" style-hover="border-color:#B8F53C;">
+<span style="display:flex;gap:6px;">
+<img src="img/paint1.JPG" alt="" style="width:64px;height:64px;object-fit:cover;filter:grayscale(0.6) contrast(1.2);">
+<img src="img/paint2.JPG" alt="" style="width:64px;height:64px;object-fit:cover;filter:grayscale(0.6) contrast(1.2);">
+<img src="img/paint3.JPG" alt="" style="width:64px;height:64px;object-fit:cover;filter:grayscale(0.6) contrast(1.2);">
+<img src="img/paint4.JPG" alt="" style="width:64px;height:64px;object-fit:cover;filter:grayscale(0.6) contrast(1.2);">
+</span>
+<span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#7E9184;">[04] Archive<br><span style="font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:20px;letter-spacing:0.04em;color:#D8E6DA;">Off-duty: paintings &amp; illustrations →</span></span>
+</a>
+</section>
+<footer style="position:relative;margin-top:clamp(64px, 12vw, 100px);border-top:1px solid #1C2620;padding:44px clamp(16px, 4vw, 40px) 28px;">
+<p style="font-size:12px;letter-spacing:0.2em;color:#B8F53C;text-transform:uppercase;">&gt; Open a channel</p>
+<a href="mailto:sejinp98@gmail.com" style="display:inline-block;margin-top:8px;font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:clamp(24px, 7.5vw, 48px);line-height:1;overflow-wrap:anywhere;text-decoration:none;" style-hover="color:#B8F53C;text-shadow:2px 0 0 rgba(255,61,168,0.6), -2px 0 0 rgba(0,229,255,0.45);">sejinp98@gmail.com</a>
+<div style="display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:space-between;margin-top:44px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;">
+<nav style="display:flex;flex-wrap:wrap;gap:8px 22px;">
+<a href="https://github.com/DeveloperSeJin" target="_blank" style="text-decoration:none;" style-hover="color:#B8F53C;">GitHub</a>
+<a href="https://scholar.google.com/citations?user=hkenerYAAAAJ" target="_blank" style="text-decoration:none;" style-hover="color:#B8F53C;">Scholar</a>
+<sc-if value="{{ hasCV }}" hint-placeholder-val="{{ false }}"><a href="cv.pdf" style="text-decoration:none;" style-hover="color:#B8F53C;">CV</a></sc-if>
+<a href="privacy.html" style="text-decoration:none;" style-hover="color:#B8F53C;">Privacy</a>
+</nav>
+</div>
+</footer>
+</div>
+</sc-if>
+<sc-if value="{{ isDrawings }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;overflow:hidden;min-height:100vh;background:#07090A;color:#D8E6DA;font-family:'IBM Plex Mono', ui-monospace, monospace;font-size:14px;line-height:1.6;">
+<div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(184,245,60,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(184,245,60,0.045) 1px, transparent 1px);background-size:40px 40px;"></div>
+<header style="position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;padding:16px clamp(16px, 4vw, 40px);border-bottom:1px solid #1C2620;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">
+<a href="#/" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><span style="width:9px;height:9px;background:#B8F53C;box-shadow:0 0 10px #B8F53C;"></span><span style="font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:16px;letter-spacing:0.14em;">Sejin_Park</span></a>
+<a href="#/" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;">&lt; Back to index</a>
+</header>
+<section style="position:relative;padding:clamp(28px, 6vw, 48px) clamp(16px, 4vw, 40px) 80px;">
+<p style="font-size:12px;letter-spacing:0.22em;color:#B8F53C;text-transform:uppercase;">&gt; /archive/drawings — 4 files</p>
+<h1 style="margin-top:12px;font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:clamp(34px, 10vw, 56px);line-height:1;text-transform:uppercase;text-shadow:2px 0 0 rgba(255,61,168,0.7), -2px 0 0 rgba(0,229,255,0.5);">Visual Archive</h1>
+<p style="margin-top:14px;font-size:15px;color:#B5C6B9;">Paintings and digital illustrations, made off-duty.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(360px, 100%), 1fr));gap:24px;margin-top:40px;align-items:start;">
+<figure style="position:relative;border:1px solid #1C2620;background:#0C100E;padding:12px;"><span style="position:absolute;top:-1px;left:-1px;width:18px;height:18px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span><img src="img/paint1.JPG" alt="Portrait" style="width:100%;height:auto;"><figcaption style="display:flex;justify-content:space-between;margin-top:10px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;"><span style="color:#B8F53C;">IMG_01</span><span style="color:#7E9184;">Portrait // paint</span></figcaption></figure>
+<figure style="position:relative;border:1px solid #1C2620;background:#0C100E;padding:12px;"><span style="position:absolute;top:-1px;left:-1px;width:18px;height:18px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span><img src="img/paint4.JPG" alt="Reaper" style="width:100%;height:auto;"><figcaption style="display:flex;justify-content:space-between;margin-top:10px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;"><span style="color:#B8F53C;">IMG_04</span><span style="color:#7E9184;">Reaper // digital</span></figcaption></figure>
+<figure style="position:relative;border:1px solid #1C2620;background:#0C100E;padding:12px;"><span style="position:absolute;top:-1px;left:-1px;width:18px;height:18px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span><img src="img/paint2.JPG" alt="Gull" style="width:100%;height:auto;"><figcaption style="display:flex;justify-content:space-between;margin-top:10px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;"><span style="color:#B8F53C;">IMG_02</span><span style="color:#7E9184;">Gull // paint</span></figcaption></figure>
+<figure style="position:relative;border:1px solid #1C2620;background:#0C100E;padding:12px;"><span style="position:absolute;top:-1px;left:-1px;width:18px;height:18px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span><img src="img/paint3.JPG" alt="Whale" style="width:100%;height:auto;"><figcaption style="display:flex;justify-content:space-between;margin-top:10px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;"><span style="color:#B8F53C;">IMG_03</span><span style="color:#7E9184;">Whale // digital</span></figcaption></figure>
+</div>
+</section>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;animate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { chat2b: 0, prev2b: null, auto2b: true, bib: {}, copied: '', view: 'home' };
+  ringB2 = React.createRef(); ansB2 = React.createRef(); metB2 = React.createRef(); stB2 = React.createRef();
+  QA = [
+    { k: 'research', q: 'what do you work on?', a: 'Human–AI interaction. I design agents that perceive speech, text, and vision, and build sLLM-based social robots that engage children on the autism spectrum.' },
+    { k: 'projects', q: 'show me your projects.', a: '3 modules loaded: Social Robot for ASD, EEG → Text, Research PM. Details below in [01] Modules.' },
+    { k: 'papers', q: 'any publications?', a: 'Latent-Level Uncertainty Resolution for Stable EEG-to-Text Decoding under Cross-Subject Variability. Findings of EMNLP 2026, first author.' },
+    { k: 'contact', q: 'how can I reach you?', a: 'Open a channel: sejinp98@gmail.com. Also on GitHub and Google Scholar.' }
+  ];
+  GL = '#%&@$<>/=+';
+  bibtex = '@inproceedings{park2026latent,\n  title     = {Latent-Level Uncertainty Resolution for Stable EEG-to-Text Decoding under Cross-Subject Variability},\n  author    = {Park, Sejin and Lee, J. D. and So, Y. H. and Kim, B. H.},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2026},\n  year      = {2026}\n}';
+
+  componentDidMount() {
+    fetch('cv.pdf', { method: 'HEAD', cache: 'no-store' }).then(r => { if (r.ok) this.setState({ hasCV: true }); }).catch(() => {});
+    this.onHash = () => { const v = location.hash === '#/drawings' ? 'drawings' : 'home'; if (v !== this.state.view) { this.setState({ view: v }); window.scrollTo(0, 0); } };
+    window.addEventListener('hashchange', this.onHash); this.onHash();
+    this.T = 0; let last = performance.now();
+    const loop = (now) => { const dt = Math.min(0.05, (now - last) / 1000); last = now; if (this.props.animate !== false) this.T += dt; try { this.drawB2(); } catch (e) {} this.raf = requestAnimationFrame(loop); };
+    this.raf = requestAnimationFrame(loop);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); window.removeEventListener('hashchange', this.onHash); clearTimeout(this.copyT); if (this.io2) this.io2.disconnect(); }
+  fit(ref) {
+    const c = ref.current; if (!c) return null;
+    const w = c.clientWidth, h = c.clientHeight; if (!w || !h) return null;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const W = Math.round(w * dpr), H = Math.round(h * dpr);
+    if (c.width !== W || c.height !== H) { c.width = W; c.height = H; }
+    const ctx = c.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    return { ctx, w, h };
+  }
+  hash(n) { const s = Math.sin(n * 12.9898) * 43758.5453; return s - Math.floor(s); }
+  html(ref, key, v) { const el = ref.current; if (el && el.__v !== v) { el.innerHTML = v; el.__v = v; } }
+  esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  seen(ref) {
+    const el = ref.current; if (!el) return false;
+    if (!this.io2 && 'IntersectionObserver' in window) { this.vis2 = new WeakMap(); this.io2 = new IntersectionObserver(es => es.forEach(e => this.vis2.set(e.target, e.isIntersecting)), { rootMargin: '300px' }); }
+    if (!this.io2) return true;
+    if (!this.vis2.has(el)) { this.vis2.set(el, true); this.io2.observe(el); }
+    return this.vis2.get(el);
+  }
+  portraitImg() {
+    if (!this.pimg) { this.pimg = new Image(); this.pimg.src = 'img/profile_IMG.JPG'; }
+    return this.pimg.complete && this.pimg.naturalWidth ? this.pimg : null;
+  }
+  sampleImg(img, cols, rows, cx, cy, zoom) {
+    try {
+      const c = document.createElement('canvas'); c.width = cols; c.height = rows;
+      const x = c.getContext('2d', { willReadFrequently: true });
+      const iw = img.naturalWidth, ih = img.naturalHeight, s = Math.max(cols / iw, rows / ih) * zoom, dw = iw * s, dh = ih * s;
+      x.drawImage(img, cols / 2 - cx * dw, rows / 2 - cy * dh, dw, dh);
+      const d = x.getImageData(0, 0, cols, rows).data, L = new Float32Array(cols * rows);
+      let lo = 1, hi = 0;
+      for (let i = 0; i < L.length; i++) { const v = (0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]) / 255; L[i] = v; if (v < lo) lo = v; if (v > hi) hi = v; }
+      const sp = Math.max(0.05, hi - lo);
+      for (let i = 0; i < L.length; i++) L[i] = (L[i] - lo) / sp;
+      return L;
+    } catch (e) { return null; }
+  }
+
+  drawB2() {
+    if (!this.seen(this.ansB2)) return;
+    const anim = this.props.animate !== false, i = this.state.chat2b, qa = this.QA[i];
+    if (this.chatT0 == null || this.chatI !== i) { this.chatT0 = this.T; this.chatI = i; }
+    const el = this.T - this.chatT0, cps = 38, L = qa.a.length;
+    const thinking = anim && el < 0.6, n = anim ? Math.floor(Math.max(0, el - 0.6) * cps) : L, typing = n < L;
+    let out;
+    if (thinking) out = '<span style="color:#7E9184">' + '.'.repeat(1 + Math.floor(el * 6) % 3) + '</span>';
+    else if (typing) {
+      let tail = '';
+      for (let k = 0; k < 3 && n + k < L; k++) tail += this.GL[Math.floor(this.hash(Math.floor(this.T * 24) * 7 + k) * this.GL.length)];
+      out = this.esc(qa.a.slice(0, n)) + '<span style="color:#FF3DA8">' + this.esc(tail) + '</span>';
+    } else out = this.esc(qa.a) + '<span style="color:#B8F53C">' + (Math.floor(this.T * 2.4) % 2 ? '&nbsp;' : '█') + '</span>';
+    this.html(this.ansB2, 'b2', out);
+    const talk = typing && !thinking, q = Math.floor(this.T * 6), lv = (x) => Math.max(0, Math.min(4, x));
+    const vis = lv(2 + Math.round(this.hash(q) * 2)), aud = lv(talk ? 2 + Math.round(this.hash(q + 99) * 2) : Math.round(this.hash(q + 7) * 0.9)), txt = talk ? 4 : thinking ? 2 : 1;
+    const seg = (lab, v) => '<span>' + lab + ' <span style="color:#B8F53C">' + '▮'.repeat(v) + '</span><span style="color:#2C3A31">' + '▮'.repeat(4 - v) + '</span></span>';
+    this.html(this.metB2, 'b2m', seg('VIS', vis) + seg('AUD', aud) + seg('TXT', txt));
+    this.html(this.stB2, 'b2s', thinking ? 'thinking' : typing ? 'speaking' : 'listening');
+    if (anim && this.state.auto2b && !typing && el - 0.6 - L / cps > 5) { this.chatT0 = this.T; this.setState(s => ({ prev2b: s.chat2b, chat2b: (s.chat2b + 1) % this.QA.length })); }
+    const f = this.fit(this.ringB2); if (!f) return;
+    const { ctx, w, h } = f, cx = w / 2, cy = h / 2, r0 = 60, N = 72, T = this.T, target = thinking ? 0.35 : talk ? 1 : 0.16;
+    if (this.eB2 == null) this.eB2 = target;
+    this.eB2 += (target - this.eB2) * 0.08;
+    const E = this.eB2;
+    ctx.lineCap = 'round'; ctx.lineWidth = 2; ctx.shadowBlur = 8;
+    for (let k = 0; k < N; k++) {
+      const a = (k / N) * 6.2832 - 1.5708, nz = 0.5 + 0.5 * Math.sin(T * 7.3 + k * 0.9) * Math.sin(T * 3.1 + k * 0.37);
+      const len = 3 + E * 30 * nz + 1.5 * (1 + Math.sin(T * 1.4 + k * 0.21)), col = k % 9 === 0 ? '#FF3DA8' : '#B8F53C';
+      ctx.strokeStyle = col; ctx.shadowColor = col; ctx.globalAlpha = 0.5 + 0.5 * nz;
+      ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0); ctx.lineTo(cx + Math.cos(a) * (r0 + len), cy + Math.sin(a) * (r0 + len)); ctx.stroke();
+    }
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0; ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(184,245,60,0.35)'; ctx.setLineDash([2, 6]); ctx.lineDashOffset = -T * 18;
+    ctx.beginPath(); ctx.arc(cx, cy, r0 + 37, 0, 6.2832); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = 'rgba(184,245,60,0.6)'; ctx.beginPath(); ctx.arc(cx, cy, r0 - 5, 0, 6.2832); ctx.stroke();
+  }
+
+  renderVals() {
+    const s = this.state;
+    const tog = (k) => () => this.setState(st => ({ bib: { ...st.bib, [k]: !st.bib[k] } }));
+    const copy = (k) => () => { try { if (navigator.clipboard) navigator.clipboard.writeText(this.bibtex); } catch (e) {} this.setState({ copied: k }); clearTimeout(this.copyT); this.copyT = setTimeout(() => this.setState({ copied: '' }), 1600); };
+    const lbl = (k) => (s.copied === k ? 'Copied' : 'Copy');
+    return {
+      hasCV: !!s.hasCV, isHome: s.view === 'home', isDrawings: s.view === 'drawings',
+      bibtex: this.bibtex, bibB2: !!s.bib.b2, toggleBibB2: tog('b2'), copyBibB2: copy('b2'), copyLabelB2: lbl('b2'),
+      chipsB2: this.QA.map((qa, i) => { const on = i === s.chat2b; return { label: '[ ' + qa.k + ' ]', bg: on ? '#B8F53C' : 'transparent', fg: on ? '#07090A' : '#D8E6DA', bd: on ? '#B8F53C' : '#2C3A31', pick: () => { this.chatI = -1; this.setState(st => ({ prev2b: st.chat2b === i ? st.prev2b : st.chat2b, chat2b: i, auto2b: false })); } }; }),
+      qB2: this.QA[s.chat2b].q,
+      hasPrevB2: s.prev2b != null && s.prev2b !== s.chat2b,
+      prevQB2: s.prev2b != null ? this.QA[s.prev2b].q : '',
+      prevAB2: s.prev2b != null ? this.QA[s.prev2b].a : '',
+      autoLabelB2: s.auto2b ? '● auto-demo' : '○ manual',
+      ringB2: this.ringB2, ansB2: this.ansB2, metB2: this.metB2, stB2: this.stB2
+    };
+  }
+}
+</script>
+</body>
+</html>

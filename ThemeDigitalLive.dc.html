@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{margin:0}
+a{color:inherit}
+a:hover{color:inherit}
+button{font:inherit;color:inherit}
+img{display:block;max-width:100%}
+</style>
+</helmet>
+<div ref="{{ rootC }}" style="color-scheme:{{ schemeC }};position:relative;isolation:isolate;min-height:100vh;overflow-x:clip;color:#FFFFFF;font-family:'Pixelify Sans', monospace;font-size:15px;line-height:1.6;">
+<div style="position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(180deg, light-dark(#5FB2EE,#0B0E2A) 0%, light-dark(#92D0F4,#1A1C4F) 26%, light-dark(#DDF2FA,#3A2F6E) 48%, light-dark(#FFFFFF,#8A4E8C) 60%, light-dark(#E4F7CC,#2A2A64) 80%, light-dark(#B6E57E,#0E1433) 100%);">
+<canvas ref="{{ bgC }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+<canvas ref="{{ sparkC }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+<div style="position:absolute;inset:0;background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27240%27 height=%27240%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix values=%270 0 0 0 0.35 0 0 0 0 0.27 0 0 0 0 0.15 0 0 0 0.11 0%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E');mix-blend-mode:multiply;"></div>
+</div>
+<header style="position:relative;z-index:2;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 12px;max-width:1240px;margin:0 auto;padding:clamp(16px, 4vw, 22px) clamp(16px, 5vw, 48px);">
+<a href="#/" style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:clamp(15px, 4.2vw, 19px);letter-spacing:0.08em;white-space:nowrap;color:#FFFFFF;text-decoration:none;text-shadow:2px 0 0 #1A2258, -2px 0 0 #1A2258, 0 2px 0 #1A2258, 0 -2px 0 #1A2258, 2px 2px 0 #1A2258, -2px -2px 0 #1A2258, 2px -2px 0 #1A2258, -2px 2px 0 #1A2258;">
+<span style="display:grid;grid-template-columns:repeat(3,6px);gap:1px;padding:2px;background:#1A2258;">
+<span style="width:6px;height:6px;background:light-dark(#FFFFFF,#000000);"></span><span style="width:6px;height:6px;background:#FFE58A;color:#000000"></span><span style="width:6px;height:6px;background:light-dark(#FFFFFF,#000000);"></span>
+<span style="width:6px;height:6px;background:#F39CC0;color:#000000"></span><span style="width:6px;height:6px;background:#8FB4FF;color:#000000"></span><span style="width:6px;height:6px;background:#8FD6A8;color:#000000"></span>
+<span style="width:6px;height:6px;background:light-dark(#FFFFFF,#000000);"></span><span style="width:6px;height:6px;background:#8FD6A8;color:#000000"></span><span style="width:6px;height:6px;background:light-dark(#FFFFFF,#000000);"></span>
+</span>SEJIN PARK</a>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;">
+<button onClick="{{ hack }}" title="Do not press" style="display:inline-flex;align-items:center;gap:8px;padding:4px clamp(8px, 2.6vw, 14px) 4px clamp(7px, 2vw, 10px);background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:clamp(12px, 3.4vw, 14px);line-height:1.4;cursor:pointer;" style-hover="background:#FFF1A8;color:#000000" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);"><span style="position:relative;flex:none;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid #F2C21B;"><span style="position:absolute;left:-2px;top:3px;font-weight:700;font-size:10px;line-height:1;color:light-dark(#000000,#FFFFFF);">!</span></span>Warning</button>
+<button onClick="{{ toggleC }}" style="display:inline-flex;align-items:center;gap:6px;padding:4px clamp(8px, 2.6vw, 14px);background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:clamp(12px, 3.4vw, 14px);line-height:1.4;cursor:pointer;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">◐ {{ themeLabelC }}</button>
+<sc-if value="{{ hasCV }}" hint-placeholder-val="{{ false }}"><a href="cv.pdf" style="display:inline-flex;align-items:center;gap:6px;padding:4px clamp(8px, 2.6vw, 14px);background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:clamp(12px, 3.4vw, 14px);line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">CV ↓</a></sc-if>
+</div>
+</header>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<section style="position:relative;min-height:calc(100vh - 84px);display:flex;align-items:center;">
+<canvas ref="{{ groundC }}" style="position:absolute;left:0;right:0;bottom:0;width:100%;height:40%;display:block;pointer-events:none;"></canvas>
+<div style="position:relative;width:100%;max-width:1240px;margin:0 auto;padding:clamp(16px, 4vh, 48px) clamp(16px, 5vw, 48px) clamp(56px, 10vh, 112px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:clamp(24px, 4vw, 48px);">
+<div style="flex:1 1 320px;max-width:440px;min-width:0;">
+<div style="display:flex;align-items:center;gap:clamp(6px, 1.4vw, 14px);">
+<h1 style="min-width:0;text-wrap:balance;font-weight:700;font-size:clamp(28px, 3.6vw, 46px);line-height:1.15;color:#FFFFFF;text-shadow:2px 0 0 #1A2258, -2px 0 0 #1A2258, 0 2px 0 #1A2258, 0 -2px 0 #1A2258, 2px 2px 0 #1A2258, -2px 2px 0 #1A2258, 2px -2px 0 #1A2258, -2px -2px 0 #1A2258, 5px 5px 0 rgba(26,34,88,0.4);">&gt; Hello, I'm <span style="white-space:nowrap;">Sejin Park</span></h1>
+<span style="position:relative;flex:none;display:block;width:clamp(62px, 7.5vw, 96px);padding-bottom:12px;transform:translateX(-18px);"><img src="img/digi_gigimon.png" alt="" style="display:block;width:100%;height:auto;filter:{{ mascotFx }};"><span style="position:absolute;left:20%;right:20%;bottom:0;height:8px;border-radius:50%;background:radial-gradient(closest-side, rgba(26,34,88,0.32), rgba(26,34,88,0));"></span></span>
+</div>
+<div onMouseEnter="{{ redigitize }}" style="margin-top:20px;background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;height:24px;padding:0 3px 0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;"><span>sejin_park.bmp</span><span style="display:flex;gap:2px;flex:none;"><span style="width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">_</span><span style="width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">□</span><span style="margin-left:2px;width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">×</span></span></div>
+<div style="position:relative;margin-top:3px;aspect-ratio:4 / 3;overflow:hidden;background:#101830;border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);box-shadow:inset 1px 1px 0 light-dark(#000000,#808080), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">
+<canvas ref="{{ photoC }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;image-rendering:pixelated;"></canvas>
+</div>
+<div style="display:flex;gap:3px;margin-top:3px;font-size:12px;color:light-dark(#000000,#FFFFFF);">
+<span ref="{{ photoTxtC }}" style="flex:1;padding:1px 6px;border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">Digitizing…</span>
+<span style="padding:1px 6px;border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">96 × 72 px</span>
+</div>
+</div>
+</div>
+<div style="flex:1 1 300px;max-width:440px;min-width:0;display:flex;flex-direction:column;gap:24px;">
+<div style="position:relative;padding:18px 22px 26px;background:rgba(16,22,70,0.84);border:3px solid #FFFFFF;border-radius:10px;box-shadow:0 0 0 3px rgba(16,22,70,0.84), 0 14px 36px rgba(10,14,50,0.3);color:#FFFFFF;">
+<p style="font-size:13px;letter-spacing:0.08em;color:#FFE58A;">AI / ML RESEARCHER · AFFCTIV</p>
+<p style="margin-top:8px;font-size:17px;line-height:1.65;text-wrap:pretty;">I design agents that perceive speech, text, and vision — and build sLLM-based social robots that engage children on the autism spectrum.</p>
+<span data-caret="1" style="position:absolute;right:14px;bottom:6px;font-size:12px;">▼</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;">
+<a href="mailto:sejinp98@gmail.com" style="display:inline-flex;align-items:center;padding:4px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">Email</a>
+<a href="https://github.com/DeveloperSeJin" target="_blank" style="display:inline-flex;align-items:center;padding:4px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">GitHub</a>
+<a href="https://scholar.google.com/citations?user=hkenerYAAAAJ" target="_blank" style="display:inline-flex;align-items:center;padding:4px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">Google Scholar</a>
+</div>
+<nav style="position:relative;align-self:center;width:250px;height:330px;">
+<canvas ref="{{ signC }}" style="position:absolute;left:-20px;top:-12px;width:290px;height:354px;display:block;pointer-events:none;"></canvas>
+<a href="#c-works" style="position:absolute;width:220px;height:46px;display:flex;align-items:center;justify-content:center;color:#FFFFFF;font-weight:700;font-size:16px;letter-spacing:0.14em;text-decoration:none;text-shadow:0 1px 0 rgba(10,24,80,0.5), 0 0 5px rgba(10,24,80,0.35);left:7px;top:70px;padding-left:84px;transform:rotate(-3deg);" style-hover="color:#FFE58A;">WORKS</a>
+<a href="#c-papers" style="position:absolute;width:220px;height:46px;display:flex;align-items:center;justify-content:center;color:#FFFFFF;font-weight:700;font-size:16px;letter-spacing:0.14em;text-decoration:none;text-shadow:0 1px 0 rgba(10,24,80,0.5), 0 0 5px rgba(10,24,80,0.35);left:23px;top:128px;padding-right:84px;transform:rotate(2.2deg);" style-hover="color:#FFE58A;">PAPERS</a>
+<a href="#c-about" style="position:absolute;width:220px;height:46px;display:flex;align-items:center;justify-content:center;color:#FFFFFF;font-weight:700;font-size:16px;letter-spacing:0.14em;text-decoration:none;text-shadow:0 1px 0 rgba(10,24,80,0.5), 0 0 5px rgba(10,24,80,0.35);left:12px;top:186px;padding-right:84px;transform:rotate(-1.4deg);" style-hover="color:#FFE58A;">ABOUT</a>
+<a href="#/drawings" style="position:absolute;width:220px;height:46px;display:flex;align-items:center;justify-content:center;color:#FFFFFF;font-weight:700;font-size:16px;letter-spacing:0.14em;text-decoration:none;text-shadow:0 1px 0 rgba(10,24,80,0.5), 0 0 5px rgba(10,24,80,0.35);left:25px;top:244px;padding-right:84px;transform:rotate(2.8deg);" style-hover="color:#FFE58A;">DRAWINGS</a>
+</nav>
+</div>
+</div>
+</section>
+<section id="c-works" style="max-width:1240px;margin:0 auto;padding:clamp(40px, 6vh, 72px) clamp(16px, 5vw, 48px) 0;">
+<div style="display:flex;align-items:flex-end;gap:clamp(8px, 1.4vw, 14px);">
+<h2 style="min-width:0;font-weight:700;font-size:clamp(30px, 4vw, 44px);line-height:1.15;color:#FFFFFF;text-shadow:2px 0 0 #1A2258, -2px 0 0 #1A2258, 0 2px 0 #1A2258, 0 -2px 0 #1A2258, 2px 2px 0 #1A2258, -2px 2px 0 #1A2258, 2px -2px 0 #1A2258, -2px -2px 0 #1A2258, 5px 5px 0 rgba(26,34,88,0.4);">&gt; Works</h2>
+<img src="img/digi_terriermon.png" alt="" style="position:relative;z-index:1;flex:none;display:block;height:clamp(58px, 7vw, 92px);width:auto;margin-bottom:-17px;filter:{{ mascotFx }};">
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(300px, 100%), 1fr));gap:28px;margin-top:24px;align-items:start;">
+<article style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;height:24px;padding:0 3px 0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;"><span>social_robot.exe</span><span style="display:flex;gap:2px;flex:none;"><span style="width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">_</span><span style="margin-left:2px;width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">×</span></span></div>
+<div style="padding:12px 8px 8px;color:light-dark(#000000,#FFFFFF);">
+<p style="font-size:12px;letter-spacing:0.06em;color:light-dark(#000080,#FFFF00);">P01 · HUMAN–ROBOT INTERACTION</p>
+<h3 style="margin-top:4px;font-weight:700;font-size:19px;line-height:1.3;">Social Robot for ASD</h3>
+<p style="margin-top:6px;font-size:14px;line-height:1.6;color:light-dark(#1A1A1A,#FFFFFF);text-wrap:pretty;">An sLLM-based robotic agent designed to interact with children on the autism spectrum. Guides kids through interactive tasks and prompts, supporting engagement and social interaction through natural, responsive behavior.</p>
+<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;font-size:12px;">
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">sLLM</span>
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">Robotics</span>
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">HRI</span>
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">Agent</span>
+</div>
+</div>
+</article>
+<article style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;height:24px;padding:0 3px 0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;"><span>eeg_to_text.exe</span><span style="display:flex;gap:2px;flex:none;"><span style="width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">_</span><span style="margin-left:2px;width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">×</span></span></div>
+<div style="padding:12px 8px 8px;color:light-dark(#000000,#FFFFFF);">
+<p style="font-size:12px;letter-spacing:0.06em;color:light-dark(#000080,#FFFF00);">P02 · PREVIOUS RESEARCH</p>
+<h3 style="margin-top:4px;font-weight:700;font-size:19px;line-height:1.3;">EEG to Text</h3>
+<p style="margin-top:6px;font-size:14px;line-height:1.6;color:light-dark(#1A1A1A,#FFFFFF);text-wrap:pretty;">Research on decoding natural language directly from EEG brain signals. Explores how neural activity recorded during reading or imagined speech can be translated into text, bridging the gap between brain signals and language.</p>
+<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;font-size:12px;">
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">PyTorch</span>
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">Diffusion</span>
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">BART</span>
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">Optimal Transport</span>
+</div>
+</div>
+</article>
+<article style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;height:24px;padding:0 3px 0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;"><span>research_pm.exe</span><span style="display:flex;gap:2px;flex:none;"><span style="width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">_</span><span style="margin-left:2px;width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">×</span></span></div>
+<div style="padding:12px 8px 8px;color:light-dark(#000000,#FFFFFF);">
+<p style="display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:0.06em;color:light-dark(#A00000,#FF5A5A);"><span style="position:relative;flex:none;width:16px;height:16px;border-radius:50%;background:#D23C3C;border:2px solid #FFFFFF;box-shadow:0 0 0 1px #8A1E1E;color:#000000"><span style="position:absolute;left:2px;right:2px;top:50%;height:2px;margin-top:-1px;background:light-dark(#FFFFFF,#000000);"></span></span>P03 · PRIVATE — NO PUBLIC ENTRY</p>
+<h3 style="margin-top:4px;font-weight:700;font-size:19px;line-height:1.3;">Research PM</h3>
+<p style="margin-top:6px;font-size:14px;line-height:1.6;color:light-dark(#1A1A1A,#FFFFFF);text-wrap:pretty;">A personal, single-user research project manager that syncs with an Obsidian vault, tracks experiments and lab meetings, and shows Google Calendar events. Private tool, not a public service.</p>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:10px;font-size:12px;">
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">TypeScript</span>
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">React</span>
+<span style="padding:1px 8px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);">Local LLM</span>
+<a href="privacy.html" style="margin-left:auto;font-size:13px;color:light-dark(#000080,#FFFF00);text-decoration:underline;">Privacy policy</a>
+</div>
+</div>
+</article>
+</div>
+</section>
+<section id="c-papers" style="max-width:1240px;margin:0 auto;padding:clamp(56px, 9vh, 96px) clamp(16px, 5vw, 48px) 0;">
+<div style="display:flex;align-items:flex-end;gap:clamp(8px, 1.4vw, 14px);">
+<h2 style="min-width:0;font-weight:700;font-size:clamp(30px, 4vw, 44px);line-height:1.15;color:#FFFFFF;text-shadow:2px 0 0 #1A2258, -2px 0 0 #1A2258, 0 2px 0 #1A2258, 0 -2px 0 #1A2258, 2px 2px 0 #1A2258, -2px 2px 0 #1A2258, 2px -2px 0 #1A2258, -2px -2px 0 #1A2258, 5px 5px 0 rgba(26,34,88,0.4);">&gt; Papers</h2>
+<img src="img/digi_agumon.png" alt="" style="position:relative;z-index:1;flex:none;display:block;height:clamp(70px, 8.4vw, 112px);width:auto;margin-bottom:-17px;filter:{{ mascotFx }};">
+</div>
+<article style="margin-top:24px;background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;color:light-dark(#000000,#FFFFFF);">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;height:24px;padding:0 3px 0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;"><span>papers.txt - Notepad</span><span style="display:flex;gap:2px;flex:none;"><span style="width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">_</span><span style="width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">□</span><span style="margin-left:2px;width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">×</span></span></div>
+<div style="display:flex;gap:16px;padding:3px 6px;font-size:13px;"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+<div style="padding:20px 22px 22px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);box-shadow:inset 1px 1px 0 light-dark(#000000,#808080), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">
+<p style="font-size:13px;color:light-dark(#000080,#FFFF00);">[2026] Findings of EMNLP</p>
+<h3 style="margin-top:6px;font-weight:700;font-size:clamp(18px, 2vw, 23px);line-height:1.45;text-wrap:pretty;">Latent-Level Uncertainty Resolution for Stable EEG-to-Text Decoding under Cross-Subject Variability</h3>
+<p style="margin-top:8px;font-size:14px;color:light-dark(#333333,#C0C0C0);"><b style="font-weight:700;color:light-dark(#000000,#FFFFFF);text-decoration:underline;text-underline-offset:3px;">Park, S. J.</b>, Lee, J. D., So, Y. H., &amp; Kim, B. H.</p>
+<sc-if value="{{ bibC }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;margin-top:16px;padding-top:14px;border-top:1px dashed #808080;">
+<pre style="padding-right:90px;font-family:'Pixelify Sans', monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;">{{ bibtex }}</pre>
+<button onClick="{{ copyBibC }}" style="position:absolute;top:14px;right:0;padding:2px 12px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:13px;cursor:pointer;" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);">{{ copyLabelC }}</button>
+</div>
+</sc-if>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;padding:6px 2px 2px;">
+<a href="#" style="display:inline-flex;align-items:center;padding:4px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">PDF</a>
+<a href="#" style="display:inline-flex;align-items:center;padding:4px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">Code</a>
+<button onClick="{{ toggleBibC }}" style="display:inline-flex;align-items:center;padding:4px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;cursor:pointer;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);box-shadow:inset 1px 1px 0 light-dark(#808080,#404040), inset -1px -1px 0 light-dark(#DFDFDF,#808080);">BibTeX</button>
+</div>
+</article>
+</section>
+<section id="c-about" style="max-width:1240px;margin:0 auto;padding:clamp(56px, 9vh, 96px) clamp(16px, 5vw, 48px) 0;">
+<div style="display:flex;align-items:flex-end;gap:clamp(8px, 1.4vw, 14px);">
+<h2 style="min-width:0;font-weight:700;font-size:clamp(30px, 4vw, 44px);line-height:1.15;color:#FFFFFF;text-shadow:2px 0 0 #1A2258, -2px 0 0 #1A2258, 0 2px 0 #1A2258, 0 -2px 0 #1A2258, 2px 2px 0 #1A2258, -2px 2px 0 #1A2258, 2px -2px 0 #1A2258, -2px -2px 0 #1A2258, 5px 5px 0 rgba(26,34,88,0.4);">&gt; About</h2>
+<img src="img/digi_egg.png" alt="" style="position:relative;z-index:1;flex:none;display:block;height:clamp(52px, 6vw, 80px);width:auto;margin-bottom:-17px;filter:{{ mascotFx }};">
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:24px;align-items:flex-start;">
+<div style="flex:1 1 420px;position:relative;padding:20px 24px 28px;background:rgba(16,22,70,0.84);border:3px solid #FFFFFF;border-radius:10px;box-shadow:0 0 0 3px rgba(16,22,70,0.84), 0 14px 36px rgba(10,14,50,0.3);color:#FFFFFF;">
+<p style="font-size:13px;letter-spacing:0.08em;color:#FFE58A;">SEJIN</p>
+<p style="margin-top:8px;font-size:16px;line-height:1.75;text-wrap:pretty;">I am a researcher at Affctiv, working at the intersection of cognitive neuroscience and deep learning. My work now centers on human–AI interaction: I design agents that perceive speech, text, and vision, and build sLLM-based social robots that engage children on the autism spectrum through interactive, real-world tasks. Earlier, I worked on EEG-to-text decoding — translating raw brain signals into natural language.</p>
+<span data-caret="1" style="position:absolute;right:14px;bottom:6px;font-size:12px;">▼</span>
+</div>
+<div style="flex:0 1 380px;min-width:min(290px, 100%);background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;color:light-dark(#000000,#FFFFFF);">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;height:24px;padding:0 3px 0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;"><span>sejin.exe Properties</span><span style="display:flex;gap:2px;flex:none;"><span style="width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">?</span><span style="margin-left:2px;width:18px;height:16px;display:flex;align-items:center;justify-content:center;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-weight:700;font-size:11px;line-height:1;">×</span></span></div>
+<div style="display:flex;gap:2px;padding:8px 8px 0;font-size:13px;"><span style="position:relative;top:1px;padding:3px 12px;background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#C0C0C0,#000000) light-dark(#FFFFFF,#FFFFFF);">General</span><span style="padding:3px 12px;border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF);color:light-dark(#555555,#C0C0C0);">Details</span></div>
+<div style="margin:0 8px 8px;padding:14px;border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);font-size:14px;">
+<div style="display:grid;grid-template-columns:84px minmax(0,1fr);gap:8px 12px;">
+<span style="color:light-dark(#444444,#C0C0C0);">Name:</span><span>Sejin Park</span>
+<span style="color:light-dark(#444444,#C0C0C0);">Level:</span><span>Researcher, Affctiv</span>
+<span style="color:light-dark(#444444,#C0C0C0);">Type:</span><span>Human–AI interaction</span>
+<span style="color:light-dark(#444444,#C0C0C0);">Location:</span><span>Incheon, Korea</span>
+<span style="color:light-dark(#444444,#C0C0C0);">Interests:</span><span>Multimodal agents, social robotics, small language models</span>
+</div>
+<div style="display:flex;justify-content:flex-end;gap:6px;margin-top:16px;">
+<a href="mailto:sejinp98@gmail.com" style="display:inline-flex;align-items:center;padding:3px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);">Email</a>
+<sc-if value="{{ hasCV }}" hint-placeholder-val="{{ false }}"><a href="cv.pdf" style="display:inline-flex;align-items:center;padding:3px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);">CV ↓</a></sc-if>
+</div>
+</div>
+</div>
+</div>
+<p style="margin-top:40px;font-weight:700;font-size:22px;color:#FFFFFF;text-shadow:2px 0 0 #1A2258, -2px 0 0 #1A2258, 0 2px 0 #1A2258, 0 -2px 0 #1A2258, 2px 2px 0 #1A2258, -2px 2px 0 #1A2258, 2px -2px 0 #1A2258, -2px -2px 0 #1A2258;">&gt; Evolution line</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(220px, 100%), 1fr));gap:16px;margin-top:14px;align-items:stretch;">
+<div style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 12px 30px rgba(196,60,120,0.3);padding:3px;color:light-dark(#000000,#FFFFFF);">
+<div style="height:22px;padding:0 6px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(90deg, #8A1E5A, #E0609A);color:#FFFFFF;font-weight:600;font-size:12px;"><span>01 · Current</span><span>NOW</span></div>
+<div style="padding:10px 8px 10px;"><p style="font-weight:700;font-size:16px;line-height:1.35;">Affctiv</p><p style="margin-top:4px;font-size:13px;line-height:1.55;color:light-dark(#333333,#C0C0C0);">Researcher · Incheon. EEG-to-text → Findings of EMNLP 2026.</p></div>
+</div>
+<div style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 12px 30px rgba(20,30,80,0.22);padding:3px;color:light-dark(#000000,#FFFFFF);">
+<div style="height:22px;padding:0 6px;display:flex;align-items:center;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:12px;">02 · Graduate</div>
+<div style="padding:10px 8px 10px;"><p style="font-weight:700;font-size:16px;line-height:1.35;">Inha University</p><p style="margin-top:4px;font-size:13px;line-height:1.55;color:light-dark(#333333,#C0C0C0);">M.S., Electrical and Computer Engineering · Incheon</p></div>
+</div>
+<div style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 12px 30px rgba(20,30,80,0.22);padding:3px;color:light-dark(#000000,#FFFFFF);">
+<div style="height:22px;padding:0 6px;display:flex;align-items:center;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:12px;">03 · Undergraduate</div>
+<div style="padding:10px 8px 10px;"><p style="font-weight:700;font-size:16px;line-height:1.35;">Sunmoon University</p><p style="margin-top:4px;font-size:13px;line-height:1.55;color:light-dark(#333333,#C0C0C0);">B.S. in Engineering, Computer Science and Engineering · Asan</p></div>
+</div>
+</div>
+<a href="#/drawings" style="display:block;margin-top:40px;max-width:640px;background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;color:light-dark(#000000,#FFFFFF);text-decoration:none;" style-hover="box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 20px 48px rgba(20,30,80,0.36);">
+<span style="display:flex;align-items:center;justify-content:space-between;height:24px;padding:0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;"><span>C:\Drawings</span><span>Open ↗</span></span>
+<span style="display:flex;flex-wrap:wrap;gap:18px;padding:14px 12px;background:light-dark(#FFFFFF,#000000);border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);margin-top:3px;">
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;"><img src="img/paint1.JPG" alt="" style="width:72px;height:72px;object-fit:cover;border:1px solid #808080;">portrait.jpg</span>
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;"><img src="img/paint2.JPG" alt="" style="width:72px;height:72px;object-fit:cover;border:1px solid #808080;">gull.jpg</span>
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;"><img src="img/paint3.JPG" alt="" style="width:72px;height:72px;object-fit:cover;border:1px solid #808080;">whale.jpg</span>
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;"><img src="img/paint4.JPG" alt="" style="width:72px;height:72px;object-fit:cover;border:1px solid #808080;">reaper.jpg</span>
+</span>
+<span style="display:block;padding:3px 6px 1px;font-size:12px;">4 object(s) · Outside the lab, I paint.</span>
+</a>
+</section>
+</sc-if>
+<sc-if value="{{ isDrawings }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:clamp(16px, 4vh, 48px) clamp(16px, 5vw, 48px) 0;">
+<a href="#/" style="display:inline-flex;align-items:center;padding:4px 14px;background:light-dark(#C0C0C0,#000000);color:light-dark(#000000,#FFFFFF);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset -1px -1px 0 light-dark(#808080,#404040), inset 1px 1px 0 light-dark(#DFDFDF,#808080);font-size:14px;line-height:1.4;text-decoration:none;" style-hover="background:light-dark(#D4D4D4,#262626);" style-active="border-color:light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080);">← Back</a>
+<h1 style="margin-top:20px;font-weight:700;font-size:clamp(30px, 4vw, 44px);line-height:1.15;color:#FFFFFF;text-shadow:2px 0 0 #1A2258, -2px 0 0 #1A2258, 0 2px 0 #1A2258, 0 -2px 0 #1A2258, 2px 2px 0 #1A2258, -2px 2px 0 #1A2258, 2px -2px 0 #1A2258, -2px -2px 0 #1A2258, 5px 5px 0 rgba(26,34,88,0.4);">&gt; Drawings</h1>
+<p style="display:inline-block;margin-top:12px;padding:8px 14px;background:rgba(16,22,70,0.84);border:2px solid #FFFFFF;border-radius:8px;font-size:15px;">Paintings and digital illustrations, made outside the lab.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(320px, 100%), 1fr));gap:28px;margin-top:28px;align-items:start;">
+<figure style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;color:light-dark(#000000,#FFFFFF);"><div style="display:flex;align-items:center;justify-content:space-between;height:24px;padding:0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;"><span>portrait.jpg - Paint</span><span>1 / 4</span></div><div style="margin-top:3px;border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);box-shadow:inset 1px 1px 0 light-dark(#000000,#808080);"><img src="img/paint1.JPG" alt="Portrait" style="width:100%;height:auto;"></div><figcaption style="display:flex;justify-content:space-between;padding:3px 6px 1px;font-size:12px;"><span>Portrait</span><span>paint</span></figcaption></figure>
+<figure style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;color:light-dark(#000000,#FFFFFF);"><div style="display:flex;align-items:center;justify-content:space-between;height:24px;padding:0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;"><span>reaper.jpg - Paint</span><span>4 / 4</span></div><div style="margin-top:3px;border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);box-shadow:inset 1px 1px 0 light-dark(#000000,#808080);"><img src="img/paint4.JPG" alt="Reaper" style="width:100%;height:auto;"></div><figcaption style="display:flex;justify-content:space-between;padding:3px 6px 1px;font-size:12px;"><span>Reaper</span><span>digital</span></figcaption></figure>
+<figure style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;color:light-dark(#000000,#FFFFFF);"><div style="display:flex;align-items:center;justify-content:space-between;height:24px;padding:0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;"><span>gull.jpg - Paint</span><span>2 / 4</span></div><div style="margin-top:3px;border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);box-shadow:inset 1px 1px 0 light-dark(#000000,#808080);"><img src="img/paint2.JPG" alt="Gull" style="width:100%;height:auto;"></div><figcaption style="display:flex;justify-content:space-between;padding:3px 6px 1px;font-size:12px;"><span>Gull</span><span>paint</span></figcaption></figure>
+<figure style="background:light-dark(#C0C0C0,#000000);border:1px solid;border-color:light-dark(#FFFFFF,#FFFFFF) light-dark(#000000,#808080) light-dark(#000000,#808080) light-dark(#FFFFFF,#FFFFFF);box-shadow:inset 1px 1px 0 light-dark(#DFDFDF,#808080), inset -1px -1px 0 light-dark(#808080,#404040), 0 16px 40px rgba(20,30,80,0.28);padding:3px;color:light-dark(#000000,#FFFFFF);"><div style="display:flex;align-items:center;justify-content:space-between;height:24px;padding:0 6px;background:linear-gradient(90deg, light-dark(#000080,#800080), light-dark(#1084D0,#800080));color:#FFFFFF;font-weight:600;font-size:13px;"><span>whale.jpg - Paint</span><span>3 / 4</span></div><div style="margin-top:3px;border:1px solid;border-color:light-dark(#808080,#404040) light-dark(#FFFFFF,#FFFFFF) light-dark(#FFFFFF,#FFFFFF) light-dark(#808080,#404040);box-shadow:inset 1px 1px 0 light-dark(#000000,#808080);"><img src="img/paint3.JPG" alt="Whale" style="width:100%;height:auto;"></div><figcaption style="display:flex;justify-content:space-between;padding:3px 6px 1px;font-size:12px;"><span>Whale</span><span>digital</span></figcaption></figure>
+</div>
+</section>
+</sc-if>
+<footer style="margin-top:clamp(64px, 10vh, 112px);background:light-dark(rgba(16,22,70,0.84),rgba(6,8,30,0.85));border-top:3px solid #FFFFFF;color:#FFFFFF;">
+<div style="max-width:1240px;margin:0 auto;padding:44px clamp(16px, 5vw, 48px) 28px;">
+<p style="font-size:14px;letter-spacing:0.08em;color:#FFE58A;">&gt; Send a message</p>
+<a href="mailto:sejinp98@gmail.com" style="display:inline-block;margin-top:8px;font-weight:700;font-size:clamp(22px, 7vw, 44px);line-height:1.15;overflow-wrap:anywhere;color:#FFFFFF;text-decoration:none;" style-hover="color:#FFE58A;">sejinp98@gmail.com</a>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:32px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.3);font-size:13px;color:#C9D2FF;">
+<nav style="display:flex;flex-wrap:wrap;gap:20px;">
+<a href="https://github.com/DeveloperSeJin" target="_blank" style="color:#C9D2FF;text-decoration:none;" style-hover="color:#FFFFFF;">GitHub</a>
+<a href="https://scholar.google.com/citations?user=hkenerYAAAAJ" target="_blank" style="color:#C9D2FF;text-decoration:none;" style-hover="color:#FFFFFF;">Google Scholar</a>
+<sc-if value="{{ hasCV }}" hint-placeholder-val="{{ false }}"><a href="cv.pdf" style="color:#C9D2FF;text-decoration:none;" style-hover="color:#FFFFFF;">CV</a></sc-if>
+<a href="privacy.html" style="color:#C9D2FF;text-decoration:none;" style-hover="color:#FFFFFF;">Privacy</a>
+</nav>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;animate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onHack&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { dark: false, bib: false, copied: false, view: 'home' };
+  rootC = React.createRef(); bgC = React.createRef(); sparkC = React.createRef(); groundC = React.createRef();
+  photoC = React.createRef(); photoTxtC = React.createRef(); signC = React.createRef();
+  bibtex = '@inproceedings{park2026latent,\n  title     = {Latent-Level Uncertainty Resolution for Stable EEG-to-Text Decoding under Cross-Subject Variability},\n  author    = {Park, Sejin and Lee, J. D. and So, Y. H. and Kim, B. H.},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2026},\n  year      = {2026}\n}';
+
+  componentDidMount() {
+    fetch('cv.pdf', { method: 'HEAD', cache: 'no-store' }).then(r => { if (r.ok) this.setState({ hasCV: true }); }).catch(() => {});
+    this.onHash = () => { const v = location.hash === '#/drawings' ? 'drawings' : 'home'; if (v !== this.state.view) { this.setState({ view: v }); window.scrollTo(0, 0); } };
+    window.addEventListener('hashchange', this.onHash); this.onHash();
+    this.T = 0; let last = performance.now();
+    const loop = (now) => {
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (this.props.animate !== false) this.T += dt;
+      try { this.paintBg(); } catch (e) {}
+      try { this.paintSigns(); } catch (e) {}
+      try { this.drawSpark(); this.drawGround(); this.drawPhoto(); this.blink(); } catch (e) {}
+      this.raf = requestAnimationFrame(loop);
+    };
+    this.raf = requestAnimationFrame(loop);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); window.removeEventListener('hashchange', this.onHash); clearTimeout(this.copyT); }
+
+  hash(n) { const s = Math.sin(n * 12.9898) * 43758.5453; return s - Math.floor(s); }
+  rng(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+  gauss(r) { let u = 0; while (!u) u = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.2832 * r()); }
+  fit(ref, maxDpr) {
+    const c = ref.current; if (!c) return null;
+    const w = c.clientWidth, h = c.clientHeight; if (!w || !h) return null;
+    const dpr = Math.min(maxDpr || 2, window.devicePixelRatio || 1), W = Math.round(w * dpr), H = Math.round(h * dpr);
+    if (c.width !== W || c.height !== H) { c.width = W; c.height = H; }
+    const ctx = c.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    return { ctx, w, h };
+  }
+  sprite(rgb) {
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    const x = c.getContext('2d'), col = rgb.join(','), g = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0, 'rgba(' + col + ',1)'); g.addColorStop(0.4, 'rgba(' + col + ',0.7)'); g.addColorStop(1, 'rgba(' + col + ',0)');
+    x.fillStyle = g; x.fillRect(0, 0, 64, 64); return c;
+  }
+
+  paintBg() {
+    const cv = this.bgC.current; if (!cv) return;
+    const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return;
+    const n = this.state.dark;
+    if (this.bgN === n && this.bgW === w && Math.abs(this.bgH - h) < 160) return;
+    this.bgN = n; this.bgW = w; this.bgH = h;
+    const k = 0.6; cv.width = Math.round(w * k); cv.height = Math.round(h * k);
+    const ctx = cv.getContext('2d'); ctx.setTransform(k, 0, 0, k, 0, 0);
+    const r = this.rng(17), sc = Math.sqrt((w * h) / (1440 * 900));
+    // night = dusky lavender watercolour; day = bright sky with white and fresh-lime clouds
+    const G = n ? [[0, '#0B0E2A'], [0.26, '#1A1C4F'], [0.48, '#3A2F6E'], [0.6, '#8A4E8C'], [0.8, '#2A2A64'], [1, '#0E1433']]
+      : [[0, '#5FB2EE'], [0.26, '#92D0F4'], [0.48, '#DDF2FA'], [0.6, '#FFFFFF'], [0.8, '#E4F7CC'], [1, '#B6E57E']];
+    const g = ctx.createLinearGradient(0, 0, 0, h); G.forEach(([p, c]) => g.addColorStop(p, c)); ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    const white = this.sprite(n ? [206, 198, 245] : [255, 255, 255]), tint = this.sprite(n ? [112, 88, 196] : [118, 196, 242]), rose = this.sprite([214, 112, 162]);
+    const blue = this.sprite(n ? [38, 56, 150] : [86, 168, 232]), deep = this.sprite(n ? [8, 10, 36] : [62, 140, 84]), lime = this.sprite([176, 228, 96]);
+    const dab = (sp, x, y, rad, a) => { ctx.globalAlpha = a; ctx.drawImage(sp, x - rad, y - rad, rad * 2, rad * 2); };
+    for (let i = 0; i < 26; i++) dab(r() < 0.5 ? tint : blue, r() * w, r() * h * (n ? 1 : 0.7), 120 + r() * 360, 0.1 + r() * 0.12);
+    if (n) for (let i = 0; i < 12; i++) dab(rose, r() * w, h * (0.5 + r() * 0.2), 160 + r() * 300, 0.1 + r() * 0.1);
+    if (!n) for (let i = 0; i < 14; i++) dab(lime, r() * w, h * (0.45 + r() * 0.6), 140 + r() * 320, 0.12 + r() * 0.12);
+    for (let i = 0; i < 10; i++) dab(white, r() * w, h * (0.35 + r() * 0.35), 160 + r() * 300, n ? 0.08 : 0.28);
+    [[0.12, 0.16, 0.17, 0.08], [0.78, 0.1, 0.2, 0.07], [0.28, 0.42, 0.22, 0.09], [0.64, 0.36, 0.24, 0.1], [0.93, 0.5, 0.13, 0.1], [0.45, 0.7, 0.26, 0.08], [0.06, 0.76, 0.14, 0.09]].forEach(([cx, cy, sx, sy]) => {
+      const subs = [0, 1, 2].map(() => [cx * w + this.gauss(r) * sx * w * 0.5, cy * h + this.gauss(r) * sy * h * 0.5]);
+      const N = Math.round(900 * sc);
+      for (let i = 0; i < N * 0.35; i++) { const s = subs[i % 3]; dab(tint, s[0] + this.gauss(r) * sx * w * 0.55, s[1] + Math.abs(this.gauss(r)) * sy * h * 0.7 + sy * h * 0.2, 3 + r() * r() * 16, 0.06 + r() * 0.1); }
+      for (let i = 0; i < N; i++) { const s = subs[i % 3], rad = 2 + r() * r() * 15; dab(white, s[0] + this.gauss(r) * sx * w * 0.5, s[1] + this.gauss(r) * sy * h * 0.5, rad, Math.min(0.55, 0.05 + (2.2 / rad) * (0.1 + r() * 0.2)) * (n ? 0.6 : 1)); }
+      for (let i = 0; i < N * 0.28; i++) { const s = subs[i % 3]; dab(n ? rose : lime, s[0] + this.gauss(r) * sx * w * 0.6, s[1] + this.gauss(r) * sy * h * 0.6 + (n ? sy * h * 0.35 : 0), 3 + r() * r() * 14, (0.05 + r() * 0.09) * (n ? 0.8 : 1)); }
+    });
+    [0, 1].forEach(fx => {
+      for (let i = 0; i < 700 * sc; i++) { const x = fx * w + (fx ? -1 : 1) * Math.abs(this.gauss(r)) * w * 0.14, y = h - Math.abs(this.gauss(r)) * h * 0.3; dab(r() < 0.6 ? deep : n ? blue : lime, x, y, 3 + r() * r() * 22, 0.06 + r() * 0.14); }
+    });
+    const hv = ctx.createLinearGradient(0, h * 0.3, 0, h * 0.8);
+    hv.addColorStop(0, 'rgba(255,255,255,0)'); hv.addColorStop(0.5, n ? 'rgba(214,112,162,0.2)' : 'rgba(255,255,255,0.32)'); hv.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.globalAlpha = 1; ctx.fillStyle = hv; ctx.fillRect(0, 0, w, h);
+    this.scenery(ctx, r, w, h, n, dab);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#FFFFFF';
+    for (let i = 0; i < 2600 * sc; i++) { const x = r() * w, y = Math.pow(r(), 1.3) * h, rad = 0.5 + r() * r() * 2.2; ctx.globalAlpha = 0.35 + r() * 0.6; ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.2832); ctx.fill(); }
+    for (let i = 0; i < 160 * sc; i++) dab(white, r() * w, r() * h, 3 + r() * 5, 0.25 + r() * 0.3);
+    ctx.globalAlpha = 1;
+  }
+
+  // Floating translucent pixel squares (digital) + a few sparkles over the watercolour.
+  drawSpark() {
+    const f = this.fit(this.sparkC, 1); if (!f) return; const { ctx, w, h } = f, T = this.T;
+    if (!this.sq) { const r = this.rng(91); this.sq = Array.from({ length: 90 }, (_, i) => [r(), r(), [8, 12, 16, 24][Math.floor(r() * 4)], r() * 6.28, 0.2 + r() * 0.6, i % 3 === 0]); }
+    ctx.fillStyle = '#FFFFFF';
+    for (const [sx, sy, sz, ph, spd, star] of this.sq) {
+      const a = 0.5 + 0.5 * Math.sin(T * spd + ph);
+      const x = Math.round((sx * w) / 12) * 12, y = Math.round(((((sy - T * 0.003 * spd) % 1) + 1) % 1 * h) / 12) * 12;
+      if (star) {
+        const L = 2 + a * 4; ctx.globalAlpha = a * 0.8;
+        ctx.fillRect(x - L, y, L * 2 + 1, 1); ctx.fillRect(x, y - L, 1, L * 2 + 1);
+      } else { ctx.globalAlpha = 0.05 + a * 0.12; ctx.fillRect(x, y, sz, sz); }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  drawGround() {
+    const f = this.fit(this.groundC, 1.5); if (!f) return; const { ctx, w, h } = f;
+    const T = this.T, n = this.state.dark, vx = w / 2, tw = Math.max(64, w / 18), zs = 1 + (1 - (T % 7) / 7) * 12;
+    ctx.fillStyle = n ? 'rgb(255,196,228)' : 'rgb(255,255,255)';
+    for (let k = 0; k < 27; k++) {
+      const z = 1 + k * 0.45, y = h / z, t = y / h;
+      const fade = Math.min(1, Math.max(0, (t - 0.08) / 0.3)) * (1 - 0.45 * Math.max(0, (t - 0.7) / 0.3));
+      if (fade <= 0.01) continue;
+      const boost = Math.exp(-((z - zs) * (z - zs)) / 0.8), s = (2.4 + boost * 2) / Math.pow(z, 0.45);
+      ctx.globalAlpha = Math.min(1, fade * (0.28 + boost * 0.6));
+      const span = Math.ceil(((w / 2) * z) / tw) + 1;
+      for (let i = -span; i <= span; i++) { const x = vx + (i * tw) / z; if (x < -4 || x > w + 4) continue; ctx.fillRect(x - s / 2, y - s / 2, s, s); }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Backdrop props in the same dabbed watercolour: a receding line of utility poles in the haze and two framing trees.
+  scenery(ctx, r, w, h, n, dab) {
+    const S = Math.min(w, h) / 900, pc = n ? '24,26,70' : '96,120,150', hz = h * 0.68;
+    const row = [];
+    for (let i = 0; i < 10; i++) { const d = i / 9, ph = h * (0.2 - 0.17 * Math.pow(d, 0.55)), base = hz + h * 0.045 * (1 - d); row.push({ x: w * (0.84 - 0.3 * Math.pow(d, 0.7)), base, top: base - ph, ph, a: 0.62 - 0.42 * d }); }
+    const far = [];
+    for (let i = 0; i < 6; i++) { const ph = h * (0.07 - i * 0.007), base = hz + h * 0.02; far.push({ x: w * (0.16 + i * 0.05), base, top: base - ph, ph, a: 0.2 }); }
+    ctx.globalAlpha = 1; ctx.lineWidth = Math.max(0.6, S);
+    for (let i = 0; i < row.length - 1; i++) {
+      const p = row[i], q = row[i + 1];
+      [-0.9, -0.35, 0.35, 0.9].forEach(u => {
+        const x1 = p.x + u * p.ph * 0.12, y1 = p.top + p.ph * 0.05, x2 = q.x + u * q.ph * 0.12, y2 = q.top + q.ph * 0.05;
+        ctx.strokeStyle = 'rgba(' + pc + ',' + (q.a * 0.55) + ')';
+        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.quadraticCurveTo((x1 + x2) / 2, (y1 + y2) / 2 + p.ph * 0.06, x2, y2); ctx.stroke();
+      });
+    }
+    row.concat(far).forEach(p => {
+      const lw = Math.max(0.8, p.ph * 0.016), arm = p.ph * 0.12, t = Math.max(0.8, lw * 0.6);
+      ctx.fillStyle = 'rgba(' + pc + ',' + p.a + ')';
+      ctx.fillRect(p.x - lw / 2, p.top, lw, p.base - p.top);
+      ctx.fillRect(p.x - arm, p.top + p.ph * 0.05, arm * 2, t);
+      ctx.fillRect(p.x - arm * 0.75, p.top + p.ph * 0.14, arm * 1.5, t);
+      [-0.9, -0.35, 0.35, 0.9].forEach(u => ctx.fillRect(p.x + u * arm - t * 0.6, p.top + p.ph * 0.05 - t * 1.4, t * 1.2, t * 1.4));
+      { ctx.fillStyle = 'rgba(255,255,255,' + (p.a * (n ? 0.12 : 0.35)) + ')'; ctx.fillRect(p.x - lw / 2, p.top, lw * 0.35, p.base - p.top); }
+    });
+    const mist = ctx.createLinearGradient(0, hz - h * 0.05, 0, hz + h * 0.12);
+    mist.addColorStop(0, 'rgba(255,255,255,0)'); mist.addColorStop(0.5, n ? 'rgba(170,110,190,0.22)' : 'rgba(255,255,255,0.42)'); mist.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = mist; ctx.fillRect(0, hz - h * 0.05, w, h * 0.17);
+    const sT = this.sprite(n ? [10, 12, 38] : [48, 92, 128]), sM = this.sprite(n ? [28, 32, 86] : [70, 142, 150]), sH = this.sprite(n ? [150, 96, 180] : [196, 236, 150]);
+    const bez = (P, t) => { const u = 1 - t; return [0, 1].map(k => u * u * u * P[0][k] + 3 * u * u * t * P[1][k] + 3 * u * t * t * P[2][k] + t * t * t * P[3][k]); };
+    const tree = (sgn) => {
+      const bx = sgn > 0 ? w * 0.05 : w * 0.95;
+      const limb = (P, r0, r1, steps) => { for (let i = 0; i <= steps; i++) { const t = i / steps, xy = bez(P, t), rad = r0 + (r1 - r0) * t; dab(sT, xy[0] + (r() - 0.5) * rad * 0.4, xy[1] + (r() - 0.5) * rad * 0.2, rad, 0.16); if (i % 2 === 0) dab(sH, xy[0] - sgn * rad * 0.35, xy[1], rad * 0.35, 0.07); } };
+      limb([[bx, h - 4], [bx + sgn * w * 0.04, h - 6], [bx + sgn * w * 0.08, h + 2], [bx + sgn * w * 0.12, h + 10]], 16 * S, 4 * S, 60);
+      limb([[bx, h - 4], [bx - sgn * w * 0.03, h - 2], [bx - sgn * w * 0.05, h + 4], [bx - sgn * w * 0.07, h + 12]], 14 * S, 4 * S, 50);
+      const T0 = [[bx, h + 10], [bx + sgn * w * 0.012, h * 0.74], [bx + sgn * w * 0.05, h * 0.52], [bx + sgn * w * 0.035, h * 0.3]];
+      limb(T0, 34 * S, 16 * S, 220);
+      const top = bez(T0, 1), mid = bez(T0, 0.8);
+      const B = [
+        [top, [top[0] + sgn * w * 0.05, h * 0.22], [top[0] + sgn * w * 0.1, h * 0.15], [top[0] + sgn * w * 0.16, h * 0.11]],
+        [top, [top[0] + sgn * w * 0.01, h * 0.18], [top[0] - sgn * w * 0.02, h * 0.1], [top[0] - sgn * w * 0.04, h * 0.02]],
+        [mid, [mid[0] + sgn * w * 0.06, h * 0.38], [mid[0] + sgn * w * 0.12, h * 0.34], [mid[0] + sgn * w * 0.18, h * 0.32]],
+        [top, [top[0] + sgn * w * 0.03, h * 0.12], [top[0] + sgn * w * 0.06, h * 0.04], [top[0] + sgn * w * 0.08, -h * 0.02]]
+      ];
+      B.forEach(P => limb(P, 14 * S, 4 * S, 120));
+      B.map(P => P[3]).concat([[bx + sgn * w * 0.05, -h * 0.02], [bx + sgn * w * 0.13, h * 0.03]]).forEach(([cx, cy]) => {
+        const N = Math.round(320 * S * S + 180);
+        for (let i = 0; i < N; i++) {
+          const x = cx + this.gauss(r) * w * 0.055, y = cy + this.gauss(r) * h * 0.055, k = r();
+          if (k < 0.55) dab(sT, x, y, (6 + r() * 22) * S, 0.12 + r() * 0.22);
+          else if (k < 0.88) dab(sM, x, y, (4 + r() * 16) * S, 0.12 + r() * 0.2);
+          else dab(sH, x - sgn * 4 * S, y - 4 * S, (2 + r() * 8) * S, 0.18 + r() * 0.25);
+        }
+      });
+    };
+    tree(1); tree(-1);
+  }
+
+  // Signpost in flat anime-background watercolour: no cast shadows or bevels — washes, granulation, pooled edges, white paint.
+  rrect(ctx, x, y, w, h, k) { ctx.beginPath(); ctx.moveTo(x + k, y); ctx.arcTo(x + w, y, x + w, y + h, k); ctx.arcTo(x + w, y + h, x, y + h, k); ctx.arcTo(x, y + h, x, y, k); ctx.arcTo(x, y, x + w, y, k); ctx.closePath(); }
+  paintSigns() {
+    const c = this.signC.current; if (!c) return;
+    const w = c.clientWidth, h = c.clientHeight; if (!w || !h) return;
+    const n = this.state.dark;
+    if (this.signEl === c && this.signN === n) return;
+    this.signEl = c; this.signN = n;
+    const dpr = Math.min(2, window.devicePixelRatio || 1); c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
+    const ctx = c.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    const r = this.rng(31), ox = 20, oy = 12, cx = ox + 125;
+    this.signPole(ctx, cx, oy + 30, oy + 330, 10, r, n);
+    [[70, -8, -3, 'L'], [128, 8, 2.2, 'R'], [186, -3, -1.4, 'R'], [244, 10, 2.8, 'U']].forEach(([t, dx, deg, d]) => {
+      ctx.save(); ctx.translate(ox + 15 + dx + 110, oy + t + 23); ctx.rotate((deg * Math.PI) / 180); this.signPlate(ctx, 220, 46, d, r, n); ctx.restore();
+    });
+    ctx.save(); ctx.translate(cx + 2, oy + 30); ctx.rotate(-0.1); this.signDisc(ctx, 27, r, n); ctx.restore();
+  }
+  washIn(ctx, x, y, w, h, light, dark, r, count) {
+    for (let i = 0; i < count; i++) {
+      const bx = x + r() * w, by = y + r() * h, rr = 10 + r() * Math.max(w, h) * 0.22, lt = r() < 0.55, g = ctx.createRadialGradient(bx, by, 0, bx, by, rr);
+      g.addColorStop(0, lt ? light + '0.28)' : dark + '0.22)'); g.addColorStop(0.7, lt ? light + '0.1)' : dark + '0.08)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(bx - rr, by - rr, rr * 2, rr * 2);
+    }
+  }
+  grain(ctx, x, y, w, h, rgb, r, count) { for (let i = 0; i < count; i++) { const s2 = r() < 0.85 ? 1 : 1.6; ctx.fillStyle = 'rgba(' + rgb + ',' + (0.08 + r() * 0.16) + ')'; ctx.fillRect(x + r() * w, y + r() * h, s2, s2); } }
+  pooled(ctx, path, rgb) { ctx.save(); ctx.shadowColor = 'rgba(' + rgb + ',0.6)'; ctx.shadowBlur = 6; path(); ctx.strokeStyle = 'rgba(' + rgb + ',0.5)'; ctx.lineWidth = 4; ctx.stroke(); ctx.restore(); }
+  signPole(ctx, cx, top, bot, rw, r, n) {
+    ctx.save(); ctx.translate(cx, bot); ctx.rotate(0.022); ctx.translate(-cx, -bot);
+    const x0 = cx - rw / 2;
+    ctx.fillStyle = n ? '#7F8AA8' : '#8C98B4'; ctx.fillRect(x0, top, rw, bot - top);
+    for (let i = 0; i < 26; i++) { ctx.fillStyle = r() < 0.5 ? 'rgba(255,255,255,' + (0.08 + r() * 0.14) + ')' : 'rgba(30,40,90,' + (0.06 + r() * 0.1) + ')'; ctx.fillRect(x0 + r() * rw, top + r() * (bot - top) * 0.92, 1 + r(), 14 + r() * 80); }
+    ctx.fillStyle = 'rgba(40,50,100,0.3)'; ctx.fillRect(x0, top, 1, bot - top); ctx.fillRect(x0 + rw - 1, top, 1, bot - top);
+    ctx.restore();
+  }
+  signDisc(ctx, R, r, n) {
+    const circle = (rad) => () => { ctx.beginPath(); ctx.arc(0, 0, rad, 0, 6.2832); };
+    ctx.save(); circle(R)(); ctx.clip();
+    ctx.fillStyle = n ? '#CF4A44' : '#DE5248'; ctx.fillRect(-R, -R, R * 2, R * 2);
+    this.washIn(ctx, -R, -R, R * 2, R * 2, 'rgba(255,220,210,', 'rgba(120,16,24,', r, 7);
+    this.grain(ctx, -R, -R, R * 2, R * 2, '110,12,22', r, 120);
+    this.pooled(ctx, circle(R + 2), '120,16,24');
+    ctx.restore();
+    for (let l = 0; l < 2; l++) { ctx.beginPath(); ctx.arc((r() - 0.5) * 0.5, (r() - 0.5) * 0.5, R - 3.5, 0, 6.2832); ctx.strokeStyle = 'rgba(248,250,255,' + (l ? 0.95 : 0.5) + ')'; ctx.lineWidth = l ? 2 : 3; ctx.stroke(); }
+    const bw = R * 1.24, bh = R * 0.34;
+    ctx.fillStyle = '#F8F9FC'; ctx.fillRect(-bw / 2, -bh / 2, bw, bh);
+    for (let i = 0; i < 4; i++) { ctx.fillStyle = 'rgba(196,206,228,' + (0.2 + r() * 0.2) + ')'; ctx.fillRect(-bw / 2 + r() * bw * 0.8, -bh / 2 + r() * bh * 0.6, 4 + r() * 10, 1 + r() * 2); }
+  }
+  signPlate(ctx, w, h, dir, r, n) {
+    const x = -w / 2, y = -h / 2;
+    ctx.save(); this.rrect(ctx, x, y, w, h, 4); ctx.clip();
+    ctx.fillStyle = n ? '#3B6CC4' : '#4282D6'; ctx.fillRect(x, y, w, h);
+    this.washIn(ctx, x, y, w, h, 'rgba(220,240,255,', 'rgba(16,40,110,', r, 9);
+    for (let i = 0; i < 30; i++) { const yy = y + r() * h, len = w * (0.2 + r() * 0.6), xx = x + r() * (w - len); ctx.strokeStyle = r() < 0.5 ? 'rgba(255,255,255,' + (0.04 + r() * 0.07) + ')' : 'rgba(10,30,90,' + (0.04 + r() * 0.07) + ')'; ctx.lineWidth = 2 + r() * 5; ctx.beginPath(); ctx.moveTo(xx, yy); ctx.lineTo(xx + len, yy + (r() - 0.5) * 2); ctx.stroke(); }
+    this.grain(ctx, x, y, w, h, '12,30,90', r, 260);
+    this.pooled(ctx, () => this.rrect(ctx, x - 2, y - 2, w + 4, h + 4, 5), '16,40,110');
+    ctx.restore();
+    for (let l = 0; l < 2; l++) { const j = (r() - 0.5) * 0.6; this.rrect(ctx, x + 4.5 + j, y + 4.5 - j, w - 9, h - 9, 2); ctx.strokeStyle = 'rgba(248,250,255,' + (l ? 0.95 : 0.5) + ')'; ctx.lineWidth = l ? 2 : 3; ctx.stroke(); }
+    const up = dir === 'U', ah = h * (up ? 0.5 : 0.6), sw = h * 0.24, hl = h * (up ? 0.42 : 0.5), L2 = up ? 40 : 64;
+    ctx.save();
+    if (dir === 'L') ctx.translate(x + 12, 0);
+    else if (dir === 'R') { ctx.translate(x + w - 12, 0); ctx.scale(-1, 1); }
+    else { ctx.translate(x + w - 16, -13); ctx.rotate(Math.PI * 0.75); }
+    const arrow = () => { ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(hl, -ah / 2); ctx.lineTo(hl, -sw / 2); ctx.lineTo(L2, -sw / 2); ctx.lineTo(L2, sw / 2); ctx.lineTo(hl, sw / 2); ctx.lineTo(hl, ah / 2); ctx.closePath(); };
+    arrow(); ctx.fillStyle = '#F7F9FC'; ctx.fill();
+    ctx.save(); arrow(); ctx.clip(); for (let i = 0; i < 4; i++) { ctx.fillStyle = 'rgba(190,205,235,' + (0.18 + r() * 0.2) + ')'; ctx.fillRect(r() * L2, (r() - 0.5) * ah, 6 + r() * 14, 1 + r() * 2); } ctx.restore();
+    ctx.restore();
+  }
+
+  portrait() {
+    if (!this.pimg) { this.pimg = new Image(); this.pimg.src = (window.__resources && window.__resources.portrait) || 'img/profile_IMG.JPG'; }
+    return this.pimg.complete && this.pimg.naturalWidth ? this.pimg : null;
+  }
+  pixelate(img, cols, rows) {
+    const c = document.createElement('canvas'); c.width = cols; c.height = rows;
+    const x = c.getContext('2d'); x.imageSmoothingEnabled = true; x.imageSmoothingQuality = 'high';
+    const iw = img.naturalWidth, ih = img.naturalHeight, s = Math.max(cols / iw, rows / ih), dw = iw * s, dh = ih * s;
+    x.drawImage(img, cols / 2 - 0.5 * dw, rows / 2 - 0.58 * dh, dw, dh);
+    try {
+      const d = x.getImageData(0, 0, cols, rows), q = 32;
+      for (let i = 0; i < d.data.length; i += 4) for (let j = 0; j < 3; j++) d.data[i + j] = Math.min(255, Math.round(d.data[i + j] / q) * q + 6);
+      x.putImageData(d, 0, 0);
+    } catch (e) {}
+    return c;
+  }
+  // Colour pixel portrait: resolves from coarse blocks to 96×72 with a dot mesh, glitches now and then.
+  drawPhoto() {
+    const f = this.fit(this.photoC); if (!f) return; const { ctx, w, h } = f;
+    const img = this.portrait(); if (!img) return;
+    if (!this.pix) this.pix = [8, 16, 32, 64, 96].map(cols => this.pixelate(img, cols, Math.round((cols * 3) / 4)));
+    if (this.photoEl !== this.photoC.current) { this.photoEl = this.photoC.current; this.photoT0 = this.T; }
+    const e = this.T - this.photoT0, si = Math.min(4, Math.floor(e / 0.3)), p = this.pix[si];
+    ctx.imageSmoothingEnabled = false; ctx.drawImage(p, 0, 0, w, h);
+    const cw = w / p.width, ch = h / p.height;
+    ctx.fillStyle = 'rgba(0,0,0,0.18)';
+    for (let i = 1; i < p.width; i++) ctx.fillRect(Math.round(i * cw), 0, 1, h);
+    for (let j = 1; j < p.height; j++) ctx.fillRect(0, Math.round(j * ch), w, 1);
+    ctx.fillStyle = 'rgba(255,255,255,0.07)';
+    for (let i = 1; i < p.width; i++) ctx.fillRect(Math.round(i * cw) + 1, 0, 1, h);
+    const el = this.photoTxtC.current;
+    if (el) { const v = si < 4 ? 'Digitizing… ' + Math.round(((si + 1) / 5) * 100) + '%' : 'Ready — hover to re-digitize'; if (el.__v !== v) { el.textContent = v; el.__v = v; } }
+  }
+  blink() {
+    const root = this.rootC.current; if (!root) return;
+    const on = Math.floor(this.T * 2) % 2 === 0 ? '1' : '0';
+    if (this.blinkV === on && this.blinkRoot === root) return;
+    this.blinkV = on; this.blinkRoot = root;
+    root.querySelectorAll('[data-caret]').forEach(s => { s.style.opacity = on; });
+  }
+
+  renderVals() {
+    const s = this.state;
+    return {
+      hasCV: !!s.hasCV, isHome: s.view === 'home', isDrawings: s.view === 'drawings',
+      mascotFx: s.dark ? 'brightness(0.86) saturate(0.88) drop-shadow(0 0 10px rgba(190,120,200,0.35))' : 'drop-shadow(0 6px 10px rgba(26,34,88,0.22))', schemeC: s.dark ? 'dark' : 'light', themeLabelC: s.dark ? 'Day' : 'Night', toggleC: () => this.setState(st => ({ dark: !st.dark })),
+      bibtex: this.bibtex, bibC: s.bib, toggleBibC: () => this.setState(st => ({ bib: !st.bib })),
+      copyBibC: () => { try { if (navigator.clipboard) navigator.clipboard.writeText(this.bibtex); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.copyT); this.copyT = setTimeout(() => this.setState({ copied: false }), 1600); },
+      copyLabelC: s.copied ? 'Copied' : 'Copy',
+      hack: () => { if (this.props.onHack) this.props.onHack(); else location.href = 'ThemeCyber.dc.html'; },
+      redigitize: () => { if (this.T - (this.photoT0 || 0) > 2) this.photoT0 = this.T; },
+      rootC: this.rootC, bgC: this.bgC, sparkC: this.sparkC, groundC: this.groundC, photoC: this.photoC, photoTxtC: this.photoTxtC, signC: this.signC
+    };
+  }
+}
+</script>
+</body>
+</html>
