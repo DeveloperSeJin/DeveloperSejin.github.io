@@ -107,6 +107,16 @@ window.SITE = {
   credit: { label: 'digimon.net/reference_ko', href: 'https://digimon.net/reference_ko/', owner: '© BANDAI' },
 };
 </script>
+<script>
+/* 테마 파일(.dc.html)은 항상 서버에 새 버전이 있는지 확인하고 받아와요 — 업데이트가 바로 반영되게 */
+(function () {
+  var f = window.fetch;
+  window.fetch = function (u, o) {
+    if (typeof u === 'string' && /\.dc\.html(\?|$)/.test(u)) o = Object.assign({}, o, { cache: 'no-cache' });
+    return f.call(this, u, o);
+  };
+})();
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
