@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="ext-resource-dependency" content="img/profile_IMG.JPG" data-resource-id="portrait" />
+<title>Sejin Park</title>
+<script id="site-content">
+/* =====================================================================
+   사이트 내용 — 이 블록만 고치면 Digital · Cyber 두 테마에 모두 반영돼요.
+   · 글은 '작은따옴표' 또는 `백틱`(여러 줄 가능) 안에 써요.
+     작은따옴표 글 안에 ' 를 넣으려면 \' 처럼 써요.
+   · 항목 사이 쉼표(,)를 빠뜨리지 마세요. 문법이 틀리면 페이지 맨 위에 오류가 표시돼요.
+   · about · authors 에서 *별표*로 감싼 부분은 강조색으로 표시돼요. (Cyber 테마)
+   · 목록(career, projects, publications, drawings, agent)은 위에서부터 순서대로 나와요.
+   ===================================================================== */
+window.SITE = {
+  name: 'Sejin Park',
+  headline: 'AI / ML Researcher',
+  position: 'Researcher',
+  org: 'Affctiv',
+  location: 'Incheon, Korea',
+  photo: 'img/profile_IMG.JPG',
+  intro: 'I design agents that perceive speech, text, and vision — and build sLLM-based social robots that engage children on the autism spectrum.',
+  interests: ['Human–AI interaction', 'Multimodal agents', 'Social robotics', 'Small language models'],
+
+  email: 'sejinp98@gmail.com',
+  github: 'https://github.com/DeveloperSeJin',
+  scholar: 'https://scholar.google.com/citations?user=hkenerYAAAAJ',
+  cv: 'cv.pdf',            // 저장소에 이 파일이 없으면 CV 버튼은 자동으로 숨겨져요
+  privacy: 'privacy.html',
+
+  about: `I am a researcher at Affctiv, working at the intersection of cognitive neuroscience and deep learning. My work now centers on *human–AI interaction*: I design agents that perceive speech, text, and vision, and build sLLM-based social robots that engage children on the autism spectrum through interactive, real-world tasks. Earlier, I worked on EEG-to-text decoding — translating raw brain signals into natural language.`,
+
+  // 경력 · 학력 — 최신순. current: true 인 항목에 NOW 표시 (note 는 Digital 테마에만 보여요)
+  career: [
+    { org: 'Affctiv', role: 'Researcher', place: 'Incheon, Korea', stage: 'Current', current: true, note: 'EEG-to-text → Findings of EMNLP 2026.' },
+    { org: 'Inha University', role: 'M.S., Electrical and Computer Engineering', place: 'Incheon, Korea', stage: 'Graduate' },
+    { org: 'Sunmoon University', role: 'B.S. in Engineering, Computer Science and Engineering', place: 'Asan, Korea', stage: 'Undergraduate' },
+  ],
+
+  // 프로젝트 — status: 'active' | 'archived' | 'private'
+  // image 에 'img/파일이름.png' 를 넣으면 카드에 사진이 나와요. link 는 없어도 돼요
+  projects: [
+    {
+      title: 'Social Robot for ASD',
+      category: 'Human–robot interaction',
+      status: 'active',
+      desc: 'An sLLM-based robotic agent designed to interact with children on the autism spectrum. Guides kids through interactive tasks and prompts, supporting engagement and social interaction through natural, responsive behavior.',
+      tags: ['sLLM', 'Robotics', 'HRI', 'ASD', 'Agent'],
+      image: '',
+    },
+    {
+      title: 'EEG to Text',
+      category: 'Previous research',
+      status: 'archived',
+      desc: 'Research on decoding natural language directly from EEG brain signals. Explores how neural activity recorded during reading or imagined speech can be translated into text, bridging the gap between brain signals and language.',
+      tags: ['PyTorch', 'Diffusion Models', 'BART', 'Optimal Transport', 'EEG', 'NLP'],
+      image: '',
+    },
+    {
+      title: 'Research PM',
+      category: 'Private tool',
+      status: 'private',
+      desc: 'A personal, single-user research project manager that syncs with an Obsidian vault, tracks experiments and lab meetings, and shows Google Calendar events. Private tool, not a public service.',
+      tags: ['TypeScript', 'React', 'Local LLM', 'Google Calendar API'],
+      image: '',
+      link: { label: 'Privacy policy', href: 'privacy.html' },
+    },
+  ],
+
+  // 논문 — authors 에서 내 이름을 *별표*로 감싸요. pdf · code 에 주소를 넣으면 버튼이 생겨요
+  publications: [
+    {
+      year: 2026,
+      venue: 'Findings of EMNLP',
+      title: 'Latent-Level Uncertainty Resolution for Stable EEG-to-Text Decoding under Cross-Subject Variability',
+      authors: '*Park, S. J.*, Lee, J. D., So, Y. H., & Kim, B. H.',
+      pdf: '',
+      code: '',
+      bibtex: `@inproceedings{park2026latent,
+  title     = {Latent-Level Uncertainty Resolution for Stable EEG-to-Text Decoding under Cross-Subject Variability},
+  author    = {Park, Sejin and Lee, J. D. and So, Y. H. and Kim, B. H.},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2026},
+  year      = {2026}
+}`,
+    },
+  ],
+
+  // 그림 — 갤러리에 이 순서대로 나와요
+  drawings: [
+    { src: 'img/paint1.JPG', title: 'Portrait', medium: 'paint' },
+    { src: 'img/paint4.JPG', title: 'Reaper', medium: 'digital' },
+    { src: 'img/paint2.JPG', title: 'Gull', medium: 'paint' },
+    { src: 'img/paint3.JPG', title: 'Whale', medium: 'digital' },
+  ],
+
+  // Cyber 테마 에이전트 Q&A — key 는 버튼 이름
+  agent: [
+    { key: 'research', q: 'what do you work on?', a: 'Human–AI interaction. I design agents that perceive speech, text, and vision, and build sLLM-based social robots that engage children on the autism spectrum.' },
+    { key: 'projects', q: 'show me your projects.', a: '3 modules loaded: Social Robot for ASD, EEG to Text, Research PM. Details below in [01] Modules.' },
+    { key: 'papers', q: 'any publications?', a: 'Latent-Level Uncertainty Resolution for Stable EEG-to-Text Decoding under Cross-Subject Variability. Findings of EMNLP 2026, first author.' },
+    { key: 'contact', q: 'how can I reach you?', a: 'Open a channel: sejinp98@gmail.com. Also on GitHub and Google Scholar.' },
+  ],
+
+  // 이미지 출처 — 페이지 맨 아래에 작게 표시돼요
+  credit: { label: 'digimon.net/reference_ko', href: 'https://digimon.net/reference_ko/', owner: '© BANDAI' },
+};
+</script>
+<script>
+/* 테마 파일(.dc.html)은 항상 서버에 새 버전이 있는지 확인하고 받아와요 — 업데이트가 바로 반영되게 */
+(function () {
+  var f = window.fetch;
+  window.fetch = function (u, o) {
+    if (typeof u === 'string' && /\.dc\.html(\?|$)/.test(u)) o = Object.assign({}, o, { cache: 'no-cache' });
+    return f.call(this, u, o);
+  };
+})();
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Chakra+Petch:wght@700&amp;family=Pixelify+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a{color:inherit}
+a:hover{color:inherit}
+</style>
+</helmet>
+<sc-if value="{{ isDigital }}" hint-placeholder-val="{{ true }}"><dc-import name="ThemeDigitalLive" on-hack="{{ startHack }}" hint-size="100%,100vh"></dc-import></sc-if>
+<sc-if value="{{ isCyber }}" hint-placeholder-val="{{ false }}"><dc-import name="ThemeCyberLive" hint-size="100%,100vh"></dc-import></sc-if>
+<sc-if value="{{ hacking }}" hint-placeholder-val="{{ false }}">
+<div ref="{{ fx }}" style="position:fixed;inset:0;z-index:9999;overflow:hidden;cursor:wait;">
+<div ref="{{ bands }}" style="position:absolute;inset:0;pointer-events:none;"></div>
+<div ref="{{ wins }}" style="position:absolute;inset:0;"></div>
+<canvas ref="{{ cv }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;"></canvas>
+<pre ref="{{ term }}" style="position:absolute;left:clamp(20px, 6vw, 80px);right:20px;top:clamp(80px, 30vh, 260px);margin:0;font:500 clamp(14px, 1.6vw, 18px)/1.7 'IBM Plex Mono', monospace;color:#B8F53C;text-shadow:0 0 8px rgba(184,245,60,0.6);white-space:pre-wrap;"></pre>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;digital&quot;,&quot;cyber&quot;],&quot;default&quot;:&quot;digital&quot;,&quot;tsType&quot;:&quot;'digital' | 'cyber'&quot;}}">
+class Component extends DCLogic {
+  state = { t: 'digital', hacking: false };
+  fx = React.createRef(); bands = React.createRef(); wins = React.createRef(); cv = React.createRef(); term = React.createRef();
+  neon = ['#B8F53C', '#FF3DA8', '#00E5FF'];
+  msgs = [
+    ['Warning', 'Unauthorized access detected.'],
+    ['System Error', 'sejin.agent is rewriting this page.'],
+    ['Warning', "Memory at 0x0D1G1 could not be 'read'."],
+    ['Digital World', 'Signal lost. The gate is opening…'],
+    ['Warning', 'Firewall breached. Do not turn off your computer.']
+  ];
+  frags = ['ACCESS VIOLATION', '0x0D1G1', 'sejin.agent', 'ROOT://DIGITAL_WORLD', 'RECONFIGURING…', 'ERR_GATE_OPEN', '0110 1001 0111', 'OVERRIDE ▓▓▓', 'TRACE 127.0.0.1', 'CYBER://'];
+  componentDidMount() { if (this.props.theme === 'cyber') this.setState({ t: 'cyber' }); }
+  componentDidUpdate(pp) { if (pp.theme !== this.props.theme && (this.props.theme === 'cyber' || this.props.theme === 'digital')) this.setState({ t: this.props.theme }); }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); this.cleanup(); }
+
+  startHack = () => {
+    if (this.state.hacking || this.state.t !== 'digital') return;
+    this.makeFilter();
+    this.setState({ hacking: true }, () => { this.t0 = performance.now(); this.nWin = 0; this.switched = false; this.slices = null; this.raf = requestAnimationFrame(this.step); });
+  };
+  step = (now) => {
+    const t = (now - this.t0) / 1000;
+    try { this.frame(t); } catch (e) {}
+    if (t < 3.2) this.raf = requestAnimationFrame(this.step);
+    else { this.cleanup(); this.setState({ hacking: false }); }
+  };
+
+  // Full-page RGB split + horizontal slice tearing, applied as an SVG filter on <html> (keeps fixed layers in place).
+  makeFilter() {
+    if (this.svg) return;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '0'); svg.setAttribute('height', '0'); svg.setAttribute('aria-hidden', 'true');
+    svg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden;';
+    svg.innerHTML = '<filter id="sp-hack" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">'
+      + '<feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="r"/>'
+      + '<feOffset in="r" dx="0" dy="0" result="r2"/>'
+      + '<feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="g"/>'
+      + '<feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="b"/>'
+      + '<feOffset in="b" dx="0" dy="0" result="b2"/>'
+      + '<feBlend in="r2" in2="g" mode="screen" result="rg"/>'
+      + '<feBlend in="rg" in2="b2" mode="screen" result="rgb"/>'
+      + '<feTurbulence type="fractalNoise" baseFrequency="0 0.06" numOctaves="1" seed="3" result="noise"/>'
+      + '<feColorMatrix in="noise" type="matrix" values="1 0 0 0 0 0 0 0 0 0.5 0 0 0 0 0 0 0 0 0 1" result="n2"/>'
+      + '<feDisplacementMap in="rgb" in2="n2" scale="0" xChannelSelector="R" yChannelSelector="G"/>'
+      + '</filter>';
+    document.body.appendChild(svg);
+    this.svg = svg; this.offs = svg.querySelectorAll('feOffset'); this.turb = svg.querySelector('feTurbulence'); this.disp = svg.querySelector('feDisplacementMap');
+  }
+  glitch(split, scale, hue) {
+    if (!this.svg) return;
+    this.offs[0].setAttribute('dx', String(-split)); this.offs[1].setAttribute('dx', String(split));
+    this.disp.setAttribute('scale', String(scale));
+    if (Math.random() < 0.35) { this.turb.setAttribute('seed', String(Math.floor(Math.random() * 999))); this.turb.setAttribute('baseFrequency', '0 ' + (0.02 + Math.random() * 0.1).toFixed(3)); }
+    document.documentElement.style.filter = split || scale ? 'url(#sp-hack)' + (hue ? ' hue-rotate(' + hue + 'deg) saturate(1.5)' : '') : '';
+  }
+  cleanup() { document.documentElement.style.filter = ''; if (this.svg) { this.svg.remove(); this.svg = null; } }
+
+  // 0–1.45s glitch storm · 1.45–2.4s blackout + terminal (swap to Cyber at 2.15s) · 2.4–3.15s torn-slice reveal while the glitch decays
+  frame(t) {
+    const c = this.cv.current, root = this.fx.current; if (!c || !root) return;
+    const W = root.clientWidth, H = root.clientHeight;
+    if (c.width !== W || c.height !== H) { c.width = W; c.height = H; }
+    const ctx = c.getContext('2d'), rnd = Math.random, neon = this.neon; ctx.clearRect(0, 0, W, H);
+    if (t < 1.45) {
+      const k = Math.min(1, t / 1.2), spike = rnd() < 0.25 + k * 0.4;
+      this.glitch(Math.round((spike ? 8 + rnd() * 22 : 2 + rnd() * 5) * (0.4 + k)), spike ? Math.round(30 + rnd() * 140 * k) : Math.round(rnd() * 20 * k), rnd() < 0.15 ? Math.round((rnd() - 0.5) * 120) : 0);
+      if (t < 0.3) { ctx.fillStyle = Math.floor(t * 20) % 2 ? 'rgba(255,61,168,0.28)' : 'rgba(255,255,255,0.12)'; ctx.fillRect(0, 0, W, H); }
+      for (let i = 0, nb = Math.floor(4 + k * 40); i < nb; i++) { ctx.globalAlpha = 0.2 + rnd() * 0.6 * k; ctx.fillStyle = rnd() < 0.7 ? neon[Math.floor(rnd() * 3)] : rnd() < 0.5 ? '#000000' : '#FFFFFF'; ctx.fillRect(rnd() * W, rnd() * H, 6 + rnd() * 180 * k, 1 + rnd() * 18); }
+      ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(0,0,0,' + (0.06 + 0.14 * k) + ')';
+      for (let y = 0; y < H; y += 3) ctx.fillRect(0, y, W, 1);
+      ctx.font = '500 12px "IBM Plex Mono", monospace';
+      for (let i = 0, nf = Math.floor(4 + k * 14); i < nf; i++) { ctx.fillStyle = neon[i % 3]; ctx.globalAlpha = 0.5 + rnd() * 0.5; ctx.fillText(this.frags[Math.floor(rnd() * this.frags.length)], rnd() * W * 0.9, rnd() * H); }
+      ctx.globalAlpha = 1;
+      if (t > 0.55) this.breach(ctx, W, H);
+      this.updateBands(H, k);
+      const want = Math.min(10, Math.floor((t - 0.1) / 0.09));
+      while (this.nWin < want) this.spawnWin(W, H);
+      return;
+    }
+    this.clearBands();
+    if (this.wins.current && this.wins.current.childElementCount) this.wins.current.innerHTML = '';
+    const term = this.term.current;
+    const lines = ['> breach detected in /digital_world', '> injecting sejin.agent ........ ok', '> rerouting display → cyber://sejin_park'];
+    let left = Math.floor(Math.max(0, t - 1.55) * 80), out = '';
+    for (const L of lines) { if (left <= 0) break; out += L.slice(0, left) + (left >= L.length ? '\n' : ''); left -= L.length; }
+    out += Math.floor(t * 4) % 2 ? '█' : ' ';
+    if (term && term.textContent !== out) term.textContent = out;
+    if (!this.switched && t > 2.15) {
+      this.switched = true;
+      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+      window.scrollTo(0, 0); this.setState({ t: 'cyber' });
+    }
+    if (t < 2.4) {
+      this.glitch(2 + Math.round(rnd() * 4), rnd() < 0.2 ? Math.round(rnd() * 40) : 0, 0);
+      ctx.fillStyle = '#050708'; ctx.fillRect(0, 0, W, H);
+      for (let i = 0; i < 6; i++) { ctx.fillStyle = rnd() < 0.5 ? 'rgba(184,245,60,0.45)' : 'rgba(255,61,168,0.4)'; ctx.fillRect(0, rnd() * H, W, 1 + rnd() * 2); }
+      return;
+    }
+    const p = Math.min(1, (t - 2.4) / 0.75);
+    this.glitch(Math.round((1 - p) * (4 + rnd() * 14)), rnd() < 0.5 ? Math.round((1 - p) * rnd() * 110) : 0, 0);
+    if (!this.slices) { this.slices = []; let y = 0; while (y < H) { const sh = 6 + rnd() * 54; this.slices.push([y, sh, rnd(), (rnd() - 0.5) * 120]); y += sh; } }
+    for (const [y, sh, th, off] of this.slices) {
+      if (th <= p) continue;
+      ctx.fillStyle = '#050708'; ctx.fillRect(off * (1 - th + p), y, W, sh);
+      if (th - p < 0.1) { ctx.fillStyle = neon[Math.floor(rnd() * 3)]; ctx.fillRect(0, y, W, 1); }
+    }
+    if (term) term.style.opacity = String(1 - p);
+  }
+  breach(ctx, W, H) {
+    if (Math.random() < 0.25) return;
+    const size = Math.max(36, Math.min(110, W * 0.085)), y = H * 0.5, txt = 'SYSTEM BREACH', dx = 4 + Math.random() * 10;
+    ctx.font = '700 ' + size + 'px "Chakra Petch", "IBM Plex Mono", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.globalAlpha = 0.9; ctx.fillStyle = '#FF3DA8'; ctx.fillText(txt, W / 2 - dx, y);
+    ctx.fillStyle = '#00E5FF'; ctx.fillText(txt, W / 2 + dx, y);
+    ctx.fillStyle = '#F1FFF3'; ctx.fillText(txt, W / 2, y);
+    for (let i = 0; i < 4; i++) {
+      const sy = y - size / 2 + Math.random() * size, sh = 3 + Math.random() * 12, off = (Math.random() - 0.5) * 60;
+      ctx.save(); ctx.beginPath(); ctx.rect(0, sy, W, sh); ctx.clip(); ctx.clearRect(0, sy, W, sh); ctx.fillStyle = '#B8F53C'; ctx.fillText(txt, W / 2 + off, y); ctx.restore();
+    }
+    ctx.textAlign = 'start'; ctx.textBaseline = 'alphabetic'; ctx.globalAlpha = 1;
+  }
+  updateBands(H, k) {
+    const host = this.bands.current; if (!host) return;
+    if (!host.childElementCount) for (let i = 0; i < 6; i++) { const d = document.createElement('div'); d.style.cssText = 'position:absolute;left:0;right:0;'; host.appendChild(d); }
+    const F = ['hue-rotate(110deg) saturate(3)', 'invert(1)', 'hue-rotate(-90deg) contrast(1.8)', 'saturate(0) contrast(2.2) brightness(1.3)', 'hue-rotate(180deg) saturate(2.5)'];
+    Array.from(host.children).forEach(d => {
+      if (Math.random() > 0.35 + k * 0.5) { d.style.display = 'none'; return; }
+      const f = F[Math.floor(Math.random() * F.length)];
+      d.style.display = 'block'; d.style.top = Math.random() * H + 'px'; d.style.height = 4 + Math.random() * (20 + 80 * k) + 'px';
+      d.style.backdropFilter = f; d.style.webkitBackdropFilter = f;
+      d.style.background = Math.random() < 0.3 ? 'rgba(255,61,168,0.08)' : 'transparent';
+    });
+  }
+  clearBands() { const host = this.bands.current; if (host && host.childElementCount) host.innerHTML = ''; }
+  spawnWin(W, H) {
+    const host = this.wins.current; if (!host) return;
+    const i = this.nWin++, [title, msg] = this.msgs[i % this.msgs.length], warn = title === 'Warning';
+    const ww = Math.min(340, W - 40), x = Math.max(10, Math.min(W - ww - 10, W * 0.12 + (i % 8) * 34 + Math.floor(i / 8) * (W > 700 ? 180 : 20))), y = Math.max(10, Math.min(H - 150, H * 0.16 + (i % 8) * 30 + Math.floor(i / 8) * 14));
+    const icon = warn
+      ? '<span style="flex:none;position:relative;width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:28px solid #F2C21B;filter:drop-shadow(1px 1px 0 #000);"><span style="position:absolute;left:-3px;top:9px;font-weight:700;font-size:15px;line-height:1;color:#000;">!</span></span>'
+      : '<span style="flex:none;width:30px;height:30px;border-radius:50%;background:#D21F1F;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;box-shadow:1px 1px 0 #000;">×</span>';
+    const d = document.createElement('div');
+    d.style.cssText = 'position:absolute;left:' + x + 'px;top:' + y + 'px;width:' + ww + 'px;background:#C0C0C0;border:1px solid;border-color:#FFFFFF #000000 #000000 #FFFFFF;box-shadow:inset 1px 1px 0 #DFDFDF, inset -1px -1px 0 #808080, 4px 4px 0 rgba(0,0,0,0.35);padding:3px;font-family:"Pixelify Sans", monospace;color:#000;';
+    d.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;height:22px;padding:0 3px 0 6px;background:linear-gradient(90deg,#000080,#1084D0);color:#fff;font-weight:600;font-size:13px;"><span>' + title + '</span><span style="width:16px;height:14px;display:flex;align-items:center;justify-content:center;background:#C0C0C0;color:#000;border:1px solid;border-color:#fff #000 #000 #fff;font-size:10px;line-height:1;">×</span></div>'
+      + '<div style="display:flex;gap:12px;align-items:center;padding:14px 12px 10px;font-size:14px;">' + icon + '<span>' + msg + '</span></div>'
+      + '<div style="display:flex;justify-content:center;padding:0 0 8px;"><span style="padding:3px 22px;background:#C0C0C0;border:1px solid;border-color:#fff #000 #000 #fff;box-shadow:inset -1px -1px 0 #808080;font-size:13px;outline:1px dotted #000;outline-offset:-5px;">OK</span></div>';
+    host.appendChild(d);
+  }
+
+  renderVals() {
+    const s = this.state;
+    return {
+      isDigital: s.t === 'digital', isCyber: s.t === 'cyber', hacking: s.hacking,
+      startHack: this.startHack,
+      fx: this.fx, bands: this.bands, wins: this.wins, cv: this.cv, term: this.term
+    };
+  }
+}
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#5FB2EE"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#5FB2EE"/><g fill="#FFFFFF"><rect x="420" y="250" width="120" height="40"/><rect x="420" y="290" width="40" height="80"/><rect x="420" y="370" width="120" height="40"/><rect x="500" y="410" width="40" height="80"/><rect x="420" y="490" width="120" height="40"/><rect x="620" y="250" width="40" height="280"/><rect x="660" y="250" width="80" height="40"/><rect x="740" y="290" width="40" height="80"/><rect x="660" y="370" width="80" height="40"/></g></svg></template>
+</body>
+</html>

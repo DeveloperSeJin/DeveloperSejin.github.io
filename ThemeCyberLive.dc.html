@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{margin:0}
+a{color:inherit}
+a:hover{color:inherit}
+button{font:inherit;color:inherit}
+img{display:block;max-width:100%}
+</style>
+</helmet>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;overflow:hidden;min-height:100vh;background:#07090A;color:#D8E6DA;font-family:'IBM Plex Mono', ui-monospace, monospace;font-size:14px;line-height:1.6;">
+<div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(184,245,60,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(184,245,60,0.045) 1px, transparent 1px);background-size:40px 40px;"></div>
+<div style="position:absolute;inset:0;pointer-events:none;z-index:3;background:repeating-linear-gradient(180deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 3px);"></div>
+<sc-if value="{{ siteErr }}" hint-placeholder-val="{{ false }}"><p style="position:relative;z-index:5;margin:0;padding:10px clamp(16px, 4vw, 40px);background:#FF3DA8;color:#07090A;font-family:'IBM Plex Mono', monospace;font-size:13px;line-height:1.5;">⚠ index.html의 사이트 내용(window.SITE)을 읽지 못했어요 — {{ siteErrMsg }}</p></sc-if>
+<header style="position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;padding:16px clamp(16px, 4vw, 40px);border-bottom:1px solid #1C2620;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">
+<a href="#/" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><span style="width:9px;height:9px;background:#B8F53C;box-shadow:0 0 10px #B8F53C;"></span><span style="font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:16px;letter-spacing:0.14em;">{{ handle }}</span></a>
+<nav style="display:flex;flex-wrap:wrap;gap:6px 20px;">
+<a href="#b2-work" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;"><span style="color:#B8F53C;">01</span> Modules</a>
+<a href="#b2-papers" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;"><span style="color:#B8F53C;">02</span> Papers</a>
+<a href="#b2-about" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;"><span style="color:#B8F53C;">03</span> Operator</a>
+<a href="#/drawings" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;"><span style="color:#B8F53C;">04</span> Archive ↗</a>
+</nav>
+<sc-if value="{{ hasCV }}" hint-placeholder-val="{{ false }}"><a href="{{ cv }}" style="color:#07090A;background:#B8F53C;padding:7px 14px;text-decoration:none;font-weight:600;clip-path:polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);" style-hover="background:#D8FF7A;">Download CV</a></sc-if>
+</header>
+<section style="position:relative;display:flex;flex-wrap:wrap;gap:40px;align-items:stretch;padding:clamp(28px, 6vw, 48px) clamp(16px, 4vw, 40px) 0;">
+<div style="flex:5 1 340px;min-width:0;display:flex;flex-direction:column;">
+<p style="font-size:12px;letter-spacing:0.22em;color:#B8F53C;text-transform:uppercase;">&gt; {{ headline }} @ {{ org }}_</p>
+<h1 style="margin-top:14px;font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:clamp(40px, 11vw, 60px);line-height:0.95;text-transform:uppercase;letter-spacing:0.01em;text-shadow:2px 0 0 rgba(255,61,168,0.75), -2px 0 0 rgba(0,229,255,0.55);">{{ name }}</h1>
+<p style="margin-top:22px;font-size:15px;line-height:1.7;color:#B5C6B9;text-wrap:pretty;">{{ intro }}</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">
+<a href="{{ mailto }}" style="border:1px solid #2C3A31;padding:8px 14px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ Email ]</a>
+<a href="{{ github }}" target="_blank" rel="noopener" style="border:1px solid #2C3A31;padding:8px 14px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ GitHub ]</a>
+<a href="{{ scholar }}" target="_blank" rel="noopener" style="border:1px solid #2C3A31;padding:8px 14px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ Scholar ]</a>
+</div>
+<div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:6px 16px;margin-top:auto;padding-top:16px;border-top:1px solid #1C2620;font-size:12px;">
+<span style="color:#7E9184;">ROLE</span><span>{{ positionOrg }}</span>
+<span style="color:#7E9184;">LOC</span><span>{{ location }}</span>
+<span style="color:#7E9184;">FOCUS</span><span>{{ focusAll }}</span>
+</div>
+</div>
+<div style="flex:7 1 460px;min-width:0;position:relative;display:flex;flex-direction:column;border:1px solid #1C2620;background:rgba(12,16,14,0.92);">
+<span style="position:absolute;top:-1px;left:-1px;width:16px;height:16px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span>
+<span style="position:absolute;bottom:-1px;right:-1px;width:16px;height:16px;border-bottom:2px solid #B8F53C;border-right:2px solid #B8F53C;"></span>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 16px;padding:10px 16px;border-bottom:1px solid #1C2620;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;">
+<span><span style="color:#FF3DA8;">●</span> Live // sejin.agent — ask my agent</span>
+<span ref="{{ metB2 }}" style="display:flex;gap:14px;">VIS ▮▮▮▯ AUD ▮▯▯▯ TXT ▮▯▯▯</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px 24px;align-items:center;flex:1;padding:clamp(16px, 4vw, 22px) clamp(14px, 4vw, 22px) 18px;">
+<div style="position:relative;flex:none;width:200px;height:218px;">
+<canvas ref="{{ ringB2 }}" style="position:absolute;left:0;top:0;width:200px;height:200px;display:block;"></canvas>
+<div style="position:absolute;left:48px;top:48px;width:104px;height:104px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 38%, rgba(184,245,60,0.45), rgba(184,245,60,0.08) 55%, #0C100E 75%);">
+<img src="img/agent_dr.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(1.5px 0 0 rgba(255,61,168,0.7)) drop-shadow(-1.5px 0 0 rgba(0,229,255,0.5));">
+<span style="position:absolute;inset:0;background:repeating-linear-gradient(180deg, rgba(7,9,10,0.2) 0 2px, transparent 2px 4px);"></span>
+</div>
+<p ref="{{ stB2 }}" style="position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#7E9184;">listening</p>
+</div>
+<div style="flex:1 1 260px;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;min-height:clamp(150px, 40vw, 218px);">
+<sc-if value="{{ hasPrevB2 }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:2px;font-size:12px;color:#5F7166;">
+<p style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">&gt; visitor: {{ prevQB2 }}</p>
+<p style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">&lt; agent: {{ prevAB2 }}</p>
+</div>
+</sc-if>
+<p style="font-size:14px;"><span style="color:#FF3DA8;">&gt; visitor:</span> {{ qB2 }}</p>
+<p style="min-height:104px;font-size:16px;line-height:1.6;"><span style="color:#B8F53C;">&lt; agent:</span> <span ref="{{ ansB2 }}" style="color:#F1FFF3;"></span></p>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid #1C2620;">
+<span style="margin-right:4px;font-size:12px;color:#7E9184;">&gt; ask:</span>
+<sc-for list="{{ chipsB2 }}" as="chip" hint-placeholder-count="4">
+<button onClick="{{ chip.pick }}" style="background:{{ chip.bg }};color:{{ chip.fg }};border:1px solid {{ chip.bd }};padding:4px 10px;cursor:pointer;font-family:'IBM Plex Mono', monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;" style-hover="border-color:#B8F53C;">{{ chip.label }}</button>
+</sc-for>
+<span style="margin-left:auto;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7E9184;">{{ autoLabelB2 }}</span>
+</div>
+</div>
+</section>
+<section id="b2-work" style="position:relative;padding:clamp(48px, 9vw, 72px) clamp(16px, 4vw, 40px) 0;">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;border-bottom:1px solid #1C2620;padding-bottom:12px;">
+<span style="color:#B8F53C;font-size:13px;">[01]</span>
+<h2 style="font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:clamp(26px, 7vw, 34px);line-height:1;letter-spacing:0.03em;text-transform:uppercase;">Modules</h2>
+<span style="margin-left:auto;font-size:12px;color:#7E9184;letter-spacing:0.12em;text-transform:uppercase;">Projects</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(300px, 100%), 1fr));gap:20px;margin-top:24px;">
+<sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+<article style="position:relative;background:#0C100E;border:1px solid #1C2620;">
+<sc-if value="{{ p.hasImage }}" hint-placeholder-val="{{ false }}"><div style="position:relative;aspect-ratio:16 / 10;border-bottom:1px solid #1C2620;"><img src="{{ p.image }}" alt="{{ p.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div></sc-if>
+<div style="padding:18px 20px 22px;">
+<div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;"><span>{{ p.mod }}</span><span style="color:{{ p.statusColor }};">{{ p.statusLabel }}</span></div>
+<h3 style="margin-top:8px;font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:24px;line-height:1.05;text-transform:uppercase;">{{ p.title }}</h3>
+<p style="margin-top:10px;font-size:13px;line-height:1.65;color:#A9BAAE;">{{ p.desc }}</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">
+<sc-for list="{{ p.tags }}" as="tag" hint-placeholder-count="3"><span style="font-size:11px;color:#B8F53C;border:1px solid rgba(184,245,60,0.35);padding:1px 7px;">{{ tag }}</span></sc-for>
+</div>
+<sc-if value="{{ p.hasLink }}" hint-placeholder-val="{{ false }}"><a href="{{ p.linkHref }}" style="display:inline-block;margin-top:14px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#B8F53C;text-decoration:none;" style-hover="text-decoration:underline;">&gt; {{ p.linkLabel }}</a></sc-if>
+</div>
+<span style="position:absolute;top:-1px;right:-1px;width:14px;height:14px;border-top:2px solid {{ p.accent }};border-right:2px solid {{ p.accent }};"></span>
+</article>
+</sc-for>
+</div>
+</section>
+<section id="b2-papers" style="position:relative;padding:clamp(56px, 10vw, 80px) clamp(16px, 4vw, 40px) 0;">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;border-bottom:1px solid #1C2620;padding-bottom:12px;">
+<span style="color:#B8F53C;font-size:13px;">[02]</span>
+<h2 style="font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:clamp(26px, 7vw, 34px);line-height:1;letter-spacing:0.03em;text-transform:uppercase;">Papers</h2>
+<span style="margin-left:auto;font-size:12px;color:#7E9184;letter-spacing:0.12em;text-transform:uppercase;">Publications</span>
+</div>
+<sc-for list="{{ pubs }}" as="pub" hint-placeholder-count="1">
+<article style="position:relative;display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:24px;border:1px solid #1C2620;background:#0C100E;padding:clamp(16px, 4vw, 24px);">
+<div style="font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:36px;line-height:1;color:#B8F53C;text-shadow:0 0 18px rgba(184,245,60,0.35);flex:0 0 120px;">{{ pub.year }}</div>
+<div style="flex:1 1 300px;min-width:0;">
+<p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;">{{ pub.venue }} {{ pub.year }}</p>
+<h3 style="margin-top:6px;font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:24px;line-height:1.2;text-wrap:pretty;">{{ pub.title }}</h3>
+<p style="margin-top:8px;font-size:13px;color:#A9BAAE;"><sc-for list="{{ pub.authorParts }}" as="seg" hint-placeholder-count="2"><sc-if value="{{ seg.hl }}" hint-placeholder-val="{{ false }}"><span style="color:#B8F53C;">{{ seg.t }}</span></sc-if><sc-if value="{{ seg.plain }}" hint-placeholder-val="{{ true }}"><span>{{ seg.t }}</span></sc-if></sc-for></p>
+<div style="display:flex;gap:8px;margin-top:16px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">
+<sc-if value="{{ pub.hasPdf }}" hint-placeholder-val="{{ false }}"><a href="{{ pub.pdf }}" target="_blank" rel="noopener" style="border:1px solid #2C3A31;padding:5px 12px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ PDF ]</a></sc-if>
+<sc-if value="{{ pub.hasCode }}" hint-placeholder-val="{{ false }}"><a href="{{ pub.code }}" target="_blank" rel="noopener" style="border:1px solid #2C3A31;padding:5px 12px;text-decoration:none;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ Code ]</a></sc-if>
+<sc-if value="{{ pub.hasBib }}" hint-placeholder-val="{{ true }}"><button onClick="{{ pub.toggleBib }}" style="background:transparent;border:1px solid #2C3A31;padding:5px 12px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;" style-hover="border-color:#B8F53C;color:#B8F53C;">[ BibTeX ]</button></sc-if>
+</div>
+<sc-if value="{{ pub.bibOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;margin-top:14px;border:1px solid #2C3A31;background:#050706;">
+<pre style="padding:14px 96px 14px 16px;font-family:'IBM Plex Mono', ui-monospace, monospace;font-size:12px;line-height:1.6;color:#B8F53C;white-space:pre-wrap;">{{ pub.bibtex }}</pre>
+<button onClick="{{ pub.copyBib }}" style="position:absolute;top:8px;right:8px;background:#B8F53C;color:#07090A;border:none;padding:3px 10px;font-size:11px;font-weight:600;cursor:pointer;text-transform:uppercase;">{{ pub.copyLabel }}</button>
+</div>
+</sc-if>
+</div>
+</article>
+</sc-for>
+</section>
+<section id="b2-about" style="position:relative;padding:clamp(56px, 10vw, 80px) clamp(16px, 4vw, 40px) 0;">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;border-bottom:1px solid #1C2620;padding-bottom:12px;">
+<span style="color:#B8F53C;font-size:13px;">[03]</span>
+<h2 style="font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:clamp(26px, 7vw, 34px);line-height:1;letter-spacing:0.03em;text-transform:uppercase;">Operator</h2>
+<span style="margin-left:auto;font-size:12px;color:#7E9184;letter-spacing:0.12em;text-transform:uppercase;">About</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:32px;margin-top:28px;align-items:flex-start;">
+<div style="flex:0 1 260px;position:relative;border:1px solid #1C2620;background:#0C100E;padding:12px;">
+<span style="position:absolute;top:-1px;left:-1px;width:14px;height:14px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span>
+<span style="position:absolute;bottom:-1px;right:-1px;width:14px;height:14px;border-bottom:2px solid #B8F53C;border-right:2px solid #B8F53C;"></span>
+<div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:0.12em;color:#7E9184;text-transform:uppercase;"><span>Operator</span><span style="color:#B8F53C;">● Online</span></div>
+<div style="position:relative;margin-top:10px;aspect-ratio:1 / 1;overflow:hidden;background:#B8F53C;">
+<img src="{{ photo }}" alt="{{ name }}" style="width:100%;height:100%;object-fit:cover;object-position:62% 50%;filter:grayscale(1) contrast(1.35);mix-blend-mode:multiply;">
+<div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg, rgba(7,9,10,0.32) 0 2px, transparent 2px 4px);"></div>
+</div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin-top:10px;font-size:12px;">
+<span style="color:#7E9184;">NAME</span><span>{{ name }}</span>
+<span style="color:#7E9184;">ROLE</span><span>{{ positionOrg }}</span>
+<span style="color:#7E9184;">LOC</span><span>{{ location }}</span>
+</div>
+</div>
+<p style="flex:1 1 320px;min-width:0;font-size:16px;line-height:1.75;text-wrap:pretty;"><sc-for list="{{ aboutParts }}" as="seg" hint-placeholder-count="2"><sc-if value="{{ seg.hl }}" hint-placeholder-val="{{ false }}"><span style="color:#B8F53C;">{{ seg.t }}</span></sc-if><sc-if value="{{ seg.plain }}" hint-placeholder-val="{{ true }}"><span>{{ seg.t }}</span></sc-if></sc-for></p>
+<div style="flex:0 1 300px;border:1px solid #1C2620;background:#0C100E;padding:18px 20px;font-size:13px;">
+<p style="color:#7E9184;letter-spacing:0.14em;text-transform:uppercase;font-size:11px;">Service log</p>
+<div style="display:flex;flex-direction:column;gap:16px;margin-top:14px;">
+<sc-for list="{{ career }}" as="c" hint-placeholder-count="3"><div><p style="color:{{ c.accent }};">&gt; {{ c.org }}</p><p>{{ c.role }}</p><p style="color:#7E9184;">{{ c.place }}</p></div></sc-for>
+</div>
+</div>
+</div>
+<a href="#/drawings" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:40px;border:1px solid #1C2620;background:#0C100E;padding:14px;text-decoration:none;" style-hover="border-color:#B8F53C;">
+<span style="display:flex;gap:6px;">
+<sc-for list="{{ drawings }}" as="d" hint-placeholder-count="4"><img src="{{ d.src }}" alt="" style="width:64px;height:64px;object-fit:cover;filter:grayscale(0.6) contrast(1.2);"></sc-for>
+</span>
+<span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#7E9184;">[04] Archive<br><span style="font-family:'Chakra Petch', sans-serif;font-weight:600;font-size:20px;letter-spacing:0.04em;color:#D8E6DA;">Off-duty: paintings &amp; illustrations →</span></span>
+</a>
+</section>
+<footer style="position:relative;margin-top:clamp(64px, 12vw, 100px);border-top:1px solid #1C2620;padding:44px clamp(16px, 4vw, 40px) 28px;">
+<p style="font-size:12px;letter-spacing:0.2em;color:#B8F53C;text-transform:uppercase;">&gt; Open a channel</p>
+<a href="{{ mailto }}" style="display:inline-block;margin-top:8px;font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:clamp(24px, 7.5vw, 48px);line-height:1;overflow-wrap:anywhere;text-decoration:none;" style-hover="color:#B8F53C;text-shadow:2px 0 0 rgba(255,61,168,0.6), -2px 0 0 rgba(0,229,255,0.45);">{{ email }}</a>
+<div style="display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:space-between;margin-top:44px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7E9184;">
+<nav style="display:flex;flex-wrap:wrap;gap:8px 22px;">
+<a href="{{ github }}" target="_blank" rel="noopener" style="text-decoration:none;" style-hover="color:#B8F53C;">GitHub</a>
+<a href="{{ scholar }}" target="_blank" rel="noopener" style="text-decoration:none;" style-hover="color:#B8F53C;">Scholar</a>
+<sc-if value="{{ hasCV }}" hint-placeholder-val="{{ false }}"><a href="{{ cv }}" style="text-decoration:none;" style-hover="color:#B8F53C;">CV</a></sc-if>
+<a href="{{ privacy }}" style="text-decoration:none;" style-hover="color:#B8F53C;">Privacy</a>
+</nav>
+</div>
+<sc-if value="{{ hasCredit }}" hint-placeholder-val="{{ false }}"><p style="margin-top:18px;font-size:11px;letter-spacing:0.06em;color:#7E9184;">Images: <a href="{{ creditHref }}" target="_blank" rel="noopener" style="color:#7E9184;text-decoration:underline;text-underline-offset:2px;" style-hover="color:#B8F53C;">{{ creditLabel }}</a> · {{ creditOwner }}</p></sc-if>
+</footer>
+</div>
+</sc-if>
+<sc-if value="{{ isDrawings }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;overflow:hidden;min-height:100vh;background:#07090A;color:#D8E6DA;font-family:'IBM Plex Mono', ui-monospace, monospace;font-size:14px;line-height:1.6;">
+<div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(184,245,60,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(184,245,60,0.045) 1px, transparent 1px);background-size:40px 40px;"></div>
+<sc-if value="{{ siteErr }}" hint-placeholder-val="{{ false }}"><p style="position:relative;z-index:5;margin:0;padding:10px clamp(16px, 4vw, 40px);background:#FF3DA8;color:#07090A;font-family:'IBM Plex Mono', monospace;font-size:13px;line-height:1.5;">⚠ index.html의 사이트 내용(window.SITE)을 읽지 못했어요 — {{ siteErrMsg }}</p></sc-if>
+<header style="position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;padding:16px clamp(16px, 4vw, 40px);border-bottom:1px solid #1C2620;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">
+<a href="#/" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><span style="width:9px;height:9px;background:#B8F53C;box-shadow:0 0 10px #B8F53C;"></span><span style="font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:16px;letter-spacing:0.14em;">{{ handle }}</span></a>
+<a href="#/" style="color:#7E9184;text-decoration:none;" style-hover="color:#B8F53C;">&lt; Back to index</a>
+</header>
+<section style="position:relative;padding:clamp(28px, 6vw, 48px) clamp(16px, 4vw, 40px) 80px;">
+<p style="font-size:12px;letter-spacing:0.22em;color:#B8F53C;text-transform:uppercase;">&gt; /archive/drawings — {{ drawCount }} files</p>
+<h1 style="margin-top:12px;font-family:'Chakra Petch', sans-serif;font-weight:700;font-size:clamp(34px, 10vw, 56px);line-height:1;text-transform:uppercase;text-shadow:2px 0 0 rgba(255,61,168,0.7), -2px 0 0 rgba(0,229,255,0.5);">Visual Archive</h1>
+<p style="margin-top:14px;font-size:15px;color:#B5C6B9;">Paintings and digital illustrations, made off-duty.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(360px, 100%), 1fr));gap:24px;margin-top:40px;align-items:start;">
+<sc-for list="{{ drawings }}" as="d" hint-placeholder-count="4"><figure style="position:relative;border:1px solid #1C2620;background:#0C100E;padding:12px;"><span style="position:absolute;top:-1px;left:-1px;width:18px;height:18px;border-top:2px solid #B8F53C;border-left:2px solid #B8F53C;"></span><img src="{{ d.src }}" alt="{{ d.title }}" style="width:100%;height:auto;"><figcaption style="display:flex;justify-content:space-between;margin-top:10px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;"><span style="color:#B8F53C;">{{ d.imgId }}</span><span style="color:#7E9184;">{{ d.title }} // {{ d.medium }}</span></figcaption></figure></sc-for>
+</div>
+</section>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;animate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { chat2b: 0, prev2b: null, auto2b: true, bib: {}, copied: -1, view: 'home', site: null, siteErr: '', hasCV: false };
+  ringB2 = React.createRef(); ansB2 = React.createRef(); metB2 = React.createRef(); stB2 = React.createRef();
+  get QA() {
+    const S = this.site(), list = S && Array.isArray(S.agent) ? S.agent : null;
+    if (list && list.length) {
+      if (this.qaSrc !== list) { this.qaSrc = list; this.qaList = list.map((x) => ({ k: String((x && x.key) || 'ask'), q: String((x && x.q) || ''), a: String((x && x.a) || '') })); }
+      return this.qaList;
+    }
+    return [{ k: 'hello', q: '…', a: '' }];
+  }
+  GL = '#%&@$<>/=+';
+
+  componentDidMount() {
+    this.loadSite();
+    this.onHash = () => { const v = location.hash === '#/drawings' ? 'drawings' : 'home'; if (v !== this.state.view) { this.setState({ view: v }); window.scrollTo(0, 0); } };
+    window.addEventListener('hashchange', this.onHash); this.onHash();
+    this.T = 0; let last = performance.now();
+    const loop = (now) => { const dt = Math.min(0.05, (now - last) / 1000); last = now; if (this.props.animate !== false) this.T += dt; try { this.drawB2(); } catch (e) {} this.raf = requestAnimationFrame(loop); };
+    this.raf = requestAnimationFrame(loop);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); window.removeEventListener('hashchange', this.onHash); clearTimeout(this.copyT); if (this.io2) this.io2.disconnect(); }
+  fit(ref) {
+    const c = ref.current; if (!c) return null;
+    const w = c.clientWidth, h = c.clientHeight; if (!w || !h) return null;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const W = Math.round(w * dpr), H = Math.round(h * dpr);
+    if (c.width !== W || c.height !== H) { c.width = W; c.height = H; }
+    const ctx = c.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    return { ctx, w, h };
+  }
+  hash(n) { const s = Math.sin(n * 12.9898) * 43758.5453; return s - Math.floor(s); }
+  html(ref, key, v) { const el = ref.current; if (el && el.__v !== v) { el.innerHTML = v; el.__v = v; } }
+  esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  seen(ref) {
+    const el = ref.current; if (!el) return false;
+    if (!this.io2 && 'IntersectionObserver' in window) { this.vis2 = new WeakMap(); this.io2 = new IntersectionObserver(es => es.forEach(e => this.vis2.set(e.target, e.isIntersecting)), { rootMargin: '300px' }); }
+    if (!this.io2) return true;
+    if (!this.vis2.has(el)) { this.vis2.set(el, true); this.io2.observe(el); }
+    return this.vis2.get(el);
+  }
+  portraitImg() {
+    if (!this.pimg) { this.pimg = new Image(); this.pimg.src = 'img/profile_IMG.JPG'; }
+    return this.pimg.complete && this.pimg.naturalWidth ? this.pimg : null;
+  }
+  sampleImg(img, cols, rows, cx, cy, zoom) {
+    try {
+      const c = document.createElement('canvas'); c.width = cols; c.height = rows;
+      const x = c.getContext('2d', { willReadFrequently: true });
+      const iw = img.naturalWidth, ih = img.naturalHeight, s = Math.max(cols / iw, rows / ih) * zoom, dw = iw * s, dh = ih * s;
+      x.drawImage(img, cols / 2 - cx * dw, rows / 2 - cy * dh, dw, dh);
+      const d = x.getImageData(0, 0, cols, rows).data, L = new Float32Array(cols * rows);
+      let lo = 1, hi = 0;
+      for (let i = 0; i < L.length; i++) { const v = (0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]) / 255; L[i] = v; if (v < lo) lo = v; if (v > hi) hi = v; }
+      const sp = Math.max(0.05, hi - lo);
+      for (let i = 0; i < L.length; i++) L[i] = (L[i] - lo) / sp;
+      return L;
+    } catch (e) { return null; }
+  }
+
+  drawB2() {
+    if (!this.seen(this.ansB2)) return;
+    const anim = this.props.animate !== false, i = this.state.chat2b, qa = this.QA[i] || this.QA[0];
+    if (this.chatT0 == null || this.chatI !== i) { this.chatT0 = this.T; this.chatI = i; }
+    const el = this.T - this.chatT0, cps = 38, L = qa.a.length;
+    const thinking = anim && el < 0.6, n = anim ? Math.floor(Math.max(0, el - 0.6) * cps) : L, typing = n < L;
+    let out;
+    if (thinking) out = '<span style="color:#7E9184">' + '.'.repeat(1 + Math.floor(el * 6) % 3) + '</span>';
+    else if (typing) {
+      let tail = '';
+      for (let k = 0; k < 3 && n + k < L; k++) tail += this.GL[Math.floor(this.hash(Math.floor(this.T * 24) * 7 + k) * this.GL.length)];
+      out = this.esc(qa.a.slice(0, n)) + '<span style="color:#FF3DA8">' + this.esc(tail) + '</span>';
+    } else out = this.esc(qa.a) + '<span style="color:#B8F53C">' + (Math.floor(this.T * 2.4) % 2 ? '&nbsp;' : '█') + '</span>';
+    this.html(this.ansB2, 'b2', out);
+    const talk = typing && !thinking, q = Math.floor(this.T * 6), lv = (x) => Math.max(0, Math.min(4, x));
+    const vis = lv(2 + Math.round(this.hash(q) * 2)), aud = lv(talk ? 2 + Math.round(this.hash(q + 99) * 2) : Math.round(this.hash(q + 7) * 0.9)), txt = talk ? 4 : thinking ? 2 : 1;
+    const seg = (lab, v) => '<span>' + lab + ' <span style="color:#B8F53C">' + '▮'.repeat(v) + '</span><span style="color:#2C3A31">' + '▮'.repeat(4 - v) + '</span></span>';
+    this.html(this.metB2, 'b2m', seg('VIS', vis) + seg('AUD', aud) + seg('TXT', txt));
+    this.html(this.stB2, 'b2s', thinking ? 'thinking' : typing ? 'speaking' : 'listening');
+    if (anim && this.state.auto2b && !typing && el - 0.6 - L / cps > 5) { this.chatT0 = this.T; this.setState(s => ({ prev2b: s.chat2b, chat2b: (s.chat2b + 1) % this.QA.length })); }
+    const f = this.fit(this.ringB2); if (!f) return;
+    const { ctx, w, h } = f, cx = w / 2, cy = h / 2, r0 = 60, N = 72, T = this.T, target = thinking ? 0.35 : talk ? 1 : 0.16;
+    if (this.eB2 == null) this.eB2 = target;
+    this.eB2 += (target - this.eB2) * 0.08;
+    const E = this.eB2;
+    ctx.lineCap = 'round'; ctx.lineWidth = 2; ctx.shadowBlur = 8;
+    for (let k = 0; k < N; k++) {
+      const a = (k / N) * 6.2832 - 1.5708, nz = 0.5 + 0.5 * Math.sin(T * 7.3 + k * 0.9) * Math.sin(T * 3.1 + k * 0.37);
+      const len = 3 + E * 30 * nz + 1.5 * (1 + Math.sin(T * 1.4 + k * 0.21)), col = k % 9 === 0 ? '#FF3DA8' : '#B8F53C';
+      ctx.strokeStyle = col; ctx.shadowColor = col; ctx.globalAlpha = 0.5 + 0.5 * nz;
+      ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0); ctx.lineTo(cx + Math.cos(a) * (r0 + len), cy + Math.sin(a) * (r0 + len)); ctx.stroke();
+    }
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0; ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(184,245,60,0.35)'; ctx.setLineDash([2, 6]); ctx.lineDashOffset = -T * 18;
+    ctx.beginPath(); ctx.arc(cx, cy, r0 + 37, 0, 6.2832); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = 'rgba(184,245,60,0.6)'; ctx.beginPath(); ctx.arc(cx, cy, r0 - 5, 0, 6.2832); ctx.stroke();
+  }
+
+  site() { return window.SITE || this.state.site || null; }
+  loadSite() {
+    const done = (S) => {
+      this.setState({ site: S, siteErr: '' });
+      if (S && S.cv) fetch(S.cv, { method: 'HEAD', cache: 'no-store' }).then((r) => { if (r.ok) this.setState({ hasCV: true }); }).catch(() => {});
+    };
+    if (window.SITE) { done(window.SITE); return; }
+    const urls = ['index.html', 'deploy/index.html'], errs = [];
+    const next = () => {
+      const u = urls.shift();
+      if (!u) {
+        const e = errs.find((x) => x && x.name === 'SyntaxError') || errs[0];
+        this.setState({ siteErr: (e && e.name === 'SyntaxError' ? '문법 오류 — ' : '') + String((e && e.message) || e || 'unknown') });
+        return;
+      }
+      fetch(u, { cache: 'no-store' })
+        .then((r) => (r.ok ? r.text() : Promise.reject(new Error(u + ' (' + r.status + ')'))))
+        .then((t) => {
+          const m = t.match(/<script id="site-content"[^>]*>([\s\S]*?)<\/script>/);
+          if (!m) throw new Error(u + '에 site-content 블록이 없어요');
+          new Function(m[1])();
+          if (!window.SITE) throw new Error('window.SITE가 정의되지 않았어요');
+          done(window.SITE);
+        })
+        .catch((e) => { errs.push(e); next(); });
+    };
+    next();
+  }
+  contentVals(s) {
+    const S = this.site() || {}, A = (x) => (Array.isArray(x) ? x : []), str = (x) => (x == null ? '' : String(x));
+    const pad = (n) => String(n).padStart(2, '0'), slug = (t) => str(t).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    const lowerFirst = (x) => (x.length > 1 && x[1] === x[1].toLowerCase() ? x[0].toLowerCase() + x.slice(1) : x);
+    const rich = (t) => str(t).split('*').map((x, i) => ({ t: x, hl: i % 2 === 1, plain: i % 2 === 0 })).filter((x) => x.t);
+    const interests = A(S.interests).map(str), cr = S.credit || {}, pubs = A(S.publications), draws = A(S.drawings);
+    const pub = (b, i) => ({
+      year: str(b.year), venue: str(b.venue), title: str(b.title), authorParts: rich(b.authors),
+      hasPdf: !!b.pdf, pdf: str(b.pdf), hasCode: !!b.code, code: str(b.code), hasBib: !!b.bibtex, bibtex: str(b.bibtex),
+      bibOpen: !!s.bib[i], copyLabel: s.copied === i ? 'Copied' : 'Copy',
+      toggleBib: () => this.setState((st) => ({ bib: { ...st.bib, [i]: !st.bib[i] } })),
+      copyBib: () => { try { if (navigator.clipboard) navigator.clipboard.writeText(str(b.bibtex)); } catch (e) {} this.setState({ copied: i }); clearTimeout(this.copyT); this.copyT = setTimeout(() => this.setState({ copied: -1 }), 1600); }
+    });
+    const base = {
+      siteErr: !!s.siteErr, siteErrMsg: str(s.siteErr), hasCV: !!s.hasCV,
+      name: str(S.name), intro: str(S.intro), location: str(S.location), positionOrg: [S.position, S.org].filter(Boolean).join(', '),
+      email: str(S.email), mailto: 'mailto:' + str(S.email), github: str(S.github), scholar: str(S.scholar),
+      cv: str(S.cv || 'cv.pdf'), privacy: str(S.privacy || 'privacy.html'),
+      hasCredit: !!cr.label, creditLabel: str(cr.label), creditHref: str(cr.href), creditOwner: str(cr.owner), drawCount: draws.length
+    };
+    const ST = { active: ['Active', '#B8F53C'], archived: ['Archived', '#7E9184'], private: ['Private', '#FF3DA8'] };
+    return Object.assign(base, {
+      handle: str(S.name).trim().replace(/\s+/g, '_'), headline: str(S.headline), org: str(S.org), aboutParts: rich(S.about),
+      focusAll: interests.join(' · '), photo: str(S.photo || 'img/profile_IMG.JPG'),
+      projects: A(S.projects).map((p, i) => {
+        const st = ST[p.status] || [str(p.status) || 'Active', '#B8F53C'], link = p.link || {};
+        return {
+          mod: 'Mod_' + pad(i + 1), statusLabel: st[0], statusColor: st[1], accent: p.status === 'private' ? '#FF3DA8' : '#B8F53C',
+          title: str(p.title), desc: str(p.desc), tags: A(p.tags).map(str), hasImage: !!p.image, image: str(p.image),
+          hasLink: !!link.href, linkHref: str(link.href), linkLabel: str(link.label || 'Link')
+        };
+      }),
+      pubs: pubs.map(pub),
+      career: A(S.career).map((c) => ({ org: str(c.org), role: str(c.role), place: str(c.place), accent: c.current ? '#FF3DA8' : '#B8F53C' })),
+      drawings: draws.map((d, i) => ({ src: str(d.src), title: str(d.title), medium: str(d.medium), imgId: 'IMG_' + pad(i + 1) }))
+    });
+  }
+  renderVals() {
+    const s = this.state;
+    return {
+      isHome: s.view === 'home', isDrawings: s.view === 'drawings',
+      ...this.contentVals(s),
+      chipsB2: this.QA.map((qa, i) => { const on = i === s.chat2b; return { label: '[ ' + qa.k + ' ]', bg: on ? '#B8F53C' : 'transparent', fg: on ? '#07090A' : '#D8E6DA', bd: on ? '#B8F53C' : '#2C3A31', pick: () => { this.chatI = -1; this.setState(st => ({ prev2b: st.chat2b === i ? st.prev2b : st.chat2b, chat2b: i, auto2b: false })); } }; }),
+      qB2: (this.QA[s.chat2b] || this.QA[0]).q,
+      hasPrevB2: s.prev2b != null && s.prev2b !== s.chat2b && !!this.QA[s.prev2b],
+      prevQB2: (this.QA[s.prev2b] || {}).q || '',
+      prevAB2: (this.QA[s.prev2b] || {}).a || '',
+      autoLabelB2: s.auto2b ? '● auto-demo' : '○ manual',
+      ringB2: this.ringB2, ansB2: this.ansB2, metB2: this.metB2, stB2: this.stB2
+    };
+  }
+}
+</script>
+</body>
+</html>
